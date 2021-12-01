@@ -32,6 +32,9 @@ namespace Ulvino
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
+            services.AddSession();
+
+
 
         }
 
