@@ -9,6 +9,7 @@ namespace Ulvino.ViewModels
     public class HomeViewModel
     {
         public List<Slider> Sliders { get; set; }
+        public List<Blog> Blogs { get; set; }
 
     }
 }

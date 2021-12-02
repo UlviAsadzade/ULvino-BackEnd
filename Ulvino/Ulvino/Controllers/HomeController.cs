@@ -23,7 +23,8 @@ namespace Ulvino.Controllers
         {
             HomeViewModel homeVM = new HomeViewModel
             {
-                Sliders = _context.Sliders.ToList()
+                Sliders = _context.Sliders.ToList(),
+                Blogs = _context.Blogs.ToList()
             };
 
             return View(homeVM);
