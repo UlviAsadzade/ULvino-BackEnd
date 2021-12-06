@@ -22,6 +22,11 @@ namespace Ulvino.Models
         public DbSet<Feature> Features { get; set; }
         public DbSet<Process> Processes { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Type> Types { get; set; }
+        public DbSet<Variaty> Variaties { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
 
 
 
