@@ -27,6 +27,7 @@ namespace Ulvino.Models
         public DbSet<Variaty> Variaties { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
 
 
 
