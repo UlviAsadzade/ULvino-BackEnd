@@ -125,3 +125,22 @@ plus.onclick = function(e){
 }
 
 // Feature products section finish
+
+///////////////////////////////////////
+
+
+// Last-Blog section start
+
+const blogDescs = Array.from(document.querySelectorAll('.last-blog-right .blog-desc')) 
+let blogDescResult;
+blogDescs.forEach(blogDesc =>{
+    if(blogDesc.innerText.length>80){
+        blogDescResult = blogDesc.innerText.substring(0,98) + "...";
+        blogDesc.innerText = blogDescResult;
+    }
+})
+
+// Last-Blog section finish
+
+
+

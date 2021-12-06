@@ -1663,7 +1663,8 @@ body {
             color: #fff;
             font-size: 14px;
             font-weight: 400;
-            margin-bottom: 40px; }
+            margin-bottom: 40px;
+            min-height: 90px; }
           body .testimonials .testimonials-main .feedback-box .feedback-user .user-box {
             display: flex;
             margin: 0 auto;
@@ -1671,7 +1672,8 @@ body {
             body .testimonials .testimonials-main .feedback-box .feedback-user .user-box img {
               margin-right: 20px;
               width: 80px;
-              height: 80px; }
+              height: 80px;
+              border-radius: 50px; }
             body .testimonials .testimonials-main .feedback-box .feedback-user .user-box .user-name {
               display: flex;
               flex-direction: column; }
@@ -2313,46 +2315,6 @@ body {
             font-size: 14px;
             color: #454545;
             letter-spacing: 0.8px; }
-    body .shop-main aside .shop-rates {
-      text-align: left;
-      border: 1px solid #e5e5e5;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 30px; }
-      body .shop-main aside .shop-rates h4 {
-        margin-bottom: 20px;
-        color: #a34253;
-        font-weight: 400; }
-      body .shop-main aside .shop-rates .rate-box {
-        display: flex;
-        margin-bottom: 10px; }
-        body .shop-main aside .shop-rates .rate-box input {
-          margin-right: 10px;
-          margin-top: 8px; }
-        body .shop-main aside .shop-rates .rate-box .product-rate {
-          margin-bottom: 10px; }
-          body .shop-main aside .shop-rates .rate-box .product-rate .fas {
-            color: #f9bf00; }
-          body .shop-main aside .shop-rates .rate-box .product-rate .far {
-            color: #666666; }
-    body .shop-main aside .shop-price-range {
-      text-align: left;
-      border: 1px solid #e5e5e5;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column; }
-      body .shop-main aside .shop-price-range h4 {
-        margin-bottom: 20px;
-        color: #a34253;
-        font-weight: 400; }
-      body .shop-main aside .shop-price-range .price-range-box {
-        color: #454545;
-        letter-spacing: 0.8px;
-        margin-bottom: 10px; }
-        body .shop-main aside .shop-price-range .price-range-box input {
-          margin-right: 10px; }
     body .shop-main .shop-products .product-card {
       margin-bottom: 30px;
       position: relative;

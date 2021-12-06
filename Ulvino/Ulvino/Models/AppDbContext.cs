@@ -17,6 +17,7 @@ namespace Ulvino.Models
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Faq> Faqs { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
 
 
