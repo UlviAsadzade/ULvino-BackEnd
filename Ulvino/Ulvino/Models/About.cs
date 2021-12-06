@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ulvino.Models
 {
-    public class Customer
+    public class About
     {
         public int Id { get; set; }
+
+        [StringLength(maximumLength: 100)]
+        public string Title { get; set; }
+
+        [StringLength(maximumLength: 500)]
+        public string Desc { get; set; }
 
         [StringLength(maximumLength: 100)]
         public string Image { get; set; }
