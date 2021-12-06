@@ -19,6 +19,7 @@ namespace Ulvino.Models
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<Feature> Features { get; set; }
 
 
 
