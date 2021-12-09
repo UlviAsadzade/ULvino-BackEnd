@@ -1,0 +1,21 @@
+﻿@model Region
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-3 text-primary">Create</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="font-20" asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control input-rounded" placeholder="Name">
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-rounded">Create</button>
+        </div>
+
+    </form>
+</div>
+
