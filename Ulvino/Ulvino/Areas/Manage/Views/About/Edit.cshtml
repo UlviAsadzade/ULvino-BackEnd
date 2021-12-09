@@ -1,0 +1,41 @@
+﻿@model About
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-5 text-warning">Edit</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control input-rounded" placeholder="Title">
+                <span class="text-danger" asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="Desc">Desc</label>
+                <input asp-for="Desc" class="form-control input-rounded" placeholder="Desc">
+                <span class="text-danger" asp-validation-for="Desc"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="ImageFile">ImageFile</label>
+                <input asp-for="ImageFile" class="form-control input-rounded" placeholder="ImageFile">
+                <span class="text-danger" asp-validation-for="ImageFile"></span>
+            </div>
+            <div class="img-box col-md-6" style="display: inline-block; position: relative;">
+                <input type="hidden" name="Image" value="@Model.Image" />
+                <img style="max-width:300px; border-radius:50%" src="~/uploads/about/@Model.Image" />
+                <span class="remove-img-box" style="position: absolute; cursor:pointer">
+                    <i class="fa fa-times" style="color: red; font-size: 24px;"></i>
+                </span>
+            </div>
+        </div>
+        <div class="form-group pt-5 text-center">
+            <button type="submit" class="btn btn-warning btn-rounded font-20 w-25 text-center">Edit</button>
+        </div>
+
+    </form>
+</div>
+

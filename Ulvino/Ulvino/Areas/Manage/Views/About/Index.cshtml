@@ -1,0 +1,50 @@
+﻿@model About
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+<div class="page-content fade-in-up">
+    <div class="ibox ">
+        <div class="ibox-head p-5 text-center">
+            <h1>About</h1>
+        </div>
+        <div class="ibox-body">
+            <table class="table bg-ebony-800 text-white table-bordered " id="example-table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Title</th>
+                        <th class="text-center">Desc</th>
+                        <th class="text-center">Image</th>
+                        <th class="text-center">Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="align-middle text-center">1</td>
+                        <td class="align-middle text-center">@Model.Title</td>
+                        <td class="align-middle text-center">@Model.Desc</td>
+                        <td class="text-center align-middle"><img src="~/uploads/about/@Model.Image" style="max-width:150px; border-radius:50%" /></td>
+
+                        <td class="align-middle text-center">
+                            <a asp-action="edit" asp-route-id="@Model.Id" class="btn btn-warning btn-rounded">Edit</a>
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
