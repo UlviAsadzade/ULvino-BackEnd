@@ -10,6 +10,7 @@ namespace Ulvino.Models
     {
         public int Id { get; set; }
 
+        [Required]
         [StringLength(maximumLength: 100)]
         public string Name { get; set; }
 

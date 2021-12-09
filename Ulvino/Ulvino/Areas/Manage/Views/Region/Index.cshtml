@@ -12,15 +12,15 @@
     <div class="ibox ">
         <div class="ibox-head p-5">
             <h1>Regions</h1>
-            <a asp-action="create" class="btn btn-primary btn-rounded">Create</a>
+            <a asp-action="create" class="btn btn-primary font-20 btn-rounded">Create</a>
         </div>
         <div class="ibox-body">
-            <table class="table bg-teal-400 text-white table-bordered " id="example-table" cellspacing="0" width="100%">
+            <table class="table bg-ebony-800 text-white table-bordered " id="example-table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Action</th>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Action</th>
 
                     </tr>
                 </thead>
@@ -30,9 +30,9 @@
                     {
                         order++;
                         <tr>
-                            <td>@order</td>
-                            <td>@item.Name</td>
-                            <td>
+                            <td class="align-middle text-center">@order</td>
+                            <td class="align-middle text-center">@item.Name</td>
+                            <td class="align-middle text-center">
                                 <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-rounded">Edit</a>
                                 <a asp-action="deletefetch" asp-route-id="@item.Id" class="btn btn-danger btn-item-delete btn-rounded ">Delete</a>
                             </td>
