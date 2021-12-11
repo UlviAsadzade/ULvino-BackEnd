@@ -1,0 +1,38 @@
+﻿@model Feature
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-3 text-primary">Create</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control input-rounded" placeholder="Title">
+                <span class="text-danger" asp-validation-for="Title"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="Desc">Desc</label>
+                <input asp-for="Desc" class="form-control input-rounded" placeholder="Desc">
+                <span class="text-danger" asp-validation-for="Desc"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="ImageFile">ImageFile</label>
+                <input asp-for="ImageFile" class="form-control input-rounded" placeholder="ImageFile">
+                <span class="text-danger" asp-validation-for="ImageFile"></span>
+            </div>
+        </div>
+        <div class="form-group pt-5 text-center">
+            <button type="submit" class="btn btn-primary btn-rounded font-20 w-25 text-center">Create</button>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+
