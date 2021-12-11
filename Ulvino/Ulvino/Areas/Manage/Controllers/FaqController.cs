@@ -13,13 +13,11 @@ namespace Ulvino.Areas.Manage.Controllers
     public class FaqController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IWebHostEnvironment _env;
 
 
-        public FaqController(AppDbContext context, IWebHostEnvironment env)
+        public FaqController(AppDbContext context)
         {
             _context = context;
-            _env = env;
 
         }
 
