@@ -10,7 +10,7 @@
     <div class="page-content fade-in-up">
         <div class="ibox ">
             <div class="ibox-head p-5">
-                <h1>Teams</h1>
+                <h1>Features</h1>
                 <a asp-action="create" class="btn btn-primary font-20  btn-rounded">Create</a>
             </div>
             <div class="ibox-body">
@@ -34,7 +34,7 @@
                                 <td class="align-middle text-center">@order</td>
                                 <td class="align-middle text-center">@item.Title</td>
                                 <td class="align-middle text-center">@item.Desc</td>
-                                <td class="text-center align-middle"><img src="~/uploads/feature/@item.Image" style="max-width:100px; border-radius:10px" /></td>
+                                <td class="text-center align-middle bg-white"><img src="~/uploads/feature/@item.Image" style="max-width:100px; border-radius:10px" /></td>
 
                                 <td class="align-middle text-center">
                                     <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-rounded">Edit</a>
