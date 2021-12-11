@@ -9,20 +9,19 @@ namespace Ulvino.Areas.Manage.Controllers
 {
     [Area("manage")]
 
-    public class RegionController : Controller
+    public class VariatyController : Controller
     {
         private readonly AppDbContext _context;
-
-        public RegionController(AppDbContext context)
+        public VariatyController(AppDbContext context)
         {
             _context = context;
         }
 
         public IActionResult Index()
         {
-            List<Region> regions = _context.Regions.ToList();
+            List<Variaty> variaties = _context.Variaties.ToList();
 
-            return View(regions);
+            return View(variaties);
         }
 
         public IActionResult Create()
@@ -31,7 +30,7 @@ namespace Ulvino.Areas.Manage.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Region region)
+        public IActionResult Create(Variaty variaty)
         {
 
             if (!ModelState.IsValid)
@@ -39,7 +38,7 @@ namespace Ulvino.Areas.Manage.Controllers
                 return View();
             }
 
-            _context.Regions.Add(region);
+            _context.Variaties.Add(variaty);
             _context.SaveChanges();
 
             return RedirectToAction("index");
@@ -48,21 +47,21 @@ namespace Ulvino.Areas.Manage.Controllers
 
         public IActionResult Edit(int id)
         {
-            Region region = _context.Regions.FirstOrDefault(x => x.Id == id);
+            Variaty variaty = _context.Variaties.FirstOrDefault(x => x.Id == id);
 
-            if (region == null) return RedirectToAction("index", "error", new { area = "" });
+            if (variaty == null) return RedirectToAction("index", "error", new { area = "" });
 
-            return View(region);
+            return View(variaty);
         }
 
         [HttpPost]
-        public IActionResult Edit(Region region)
+        public IActionResult Edit(Variaty variaty)
         {
-            Region existRegion = _context.Regions.FirstOrDefault(x => x.Id == region.Id);
+            Variaty existVariaty = _context.Variaties.FirstOrDefault(x => x.Id == variaty.Id);
 
-            if (existRegion == null) return RedirectToAction("index", "error", new { area = "" });
+            if (existVariaty == null) return RedirectToAction("index", "error", new { area = "" });
 
-            existRegion.Name = region.Name;
+            existVariaty.Name = variaty.Name;
 
             _context.SaveChanges();
 
@@ -71,13 +70,13 @@ namespace Ulvino.Areas.Manage.Controllers
 
         public IActionResult DeleteFetch(int id)
         {
-            Region region = _context.Regions.FirstOrDefault(x => x.Id == id);
+            Variaty variaty = _context.Variaties.FirstOrDefault(x => x.Id == id);
 
-            if (region == null) return Json(new { status = 404 });
+            if (variaty == null) return Json(new { status = 404 });
 
             try
             {
-                _context.Regions.Remove(region);
+                _context.Variaties.Remove(variaty);
                 _context.SaveChanges();
             }
             catch (Exception)
