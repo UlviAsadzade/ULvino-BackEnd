@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\uploads\about\" />
+    <Folder Include="wwwroot\uploads\blog\" />
     <Folder Include="wwwroot\uploads\team\" />
   </ItemGroup>
 

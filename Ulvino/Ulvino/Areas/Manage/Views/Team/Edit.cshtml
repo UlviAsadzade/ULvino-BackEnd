@@ -48,12 +48,10 @@
                 <input asp-for="ImageFile" class="form-control input-rounded" placeholder="ImageFile">
                 <span class="text-danger" asp-validation-for="ImageFile"></span>
             </div>
-            <div class="img-box col-md-6" style="display: inline-block; position: relative;">
+            <div class="img-box col-md-6">
                 <input type="hidden" name="Image" value="@Model.Image" />
-                <img style="max-width:300px; border-radius:50%" src="~/uploads/team/@Model.Image"  />
-                <span class="remove-img-box" style="position: absolute; cursor:pointer">
-                    <i class="fa fa-times" style="color: red; font-size: 24px;"></i>
-                </span>
+                <img style="max-width: 300px; border-radius: 10px; display:block;" src="~/uploads/team/@Model.Image" />
+                <button class="btn btn-danger mt-2 remove-img-box" style="margin-left:115px; cursor:pointer">Delete</button>
             </div>
         </div>
         <div class="form-group pt-5 text-center">

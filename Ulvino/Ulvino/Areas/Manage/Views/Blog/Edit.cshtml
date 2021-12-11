@@ -1,0 +1,88 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-5 text-warning">Edit</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control input-rounded" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Owner">Owner</label>
+                <input asp-for="Owner" class="form-control input-rounded" placeholder="Owner">
+                <span class="text-danger" asp-validation-for="Owner"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Order">Order</label>
+                <input asp-for="Order" class="form-control input-rounded" placeholder="Order">
+                <span class="text-danger" asp-validation-for="Order"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Date">Date</label>
+                <input asp-for="Date" class="form-control input-rounded" placeholder="Date">
+                <span class="text-danger" asp-validation-for="Date"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Desc1">Desc1</label>
+                <input asp-for="Desc1" class="form-control input-rounded" placeholder="Desc1">
+                <span class="text-danger" asp-validation-for="Desc1"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Desc2">Desc2</label>
+                <input asp-for="Desc2" class="form-control input-rounded" placeholder="Desc2">
+                <span class="text-danger" asp-validation-for="Desc2"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Desc3">Desc3</label>
+                <input asp-for="Desc3" class="form-control input-rounded" placeholder="Desc3">
+                <span class="text-danger" asp-validation-for="Desc3"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Desc4">Desc4</label>
+                <input asp-for="Desc4" class="form-control input-rounded" placeholder="Desc4">
+                <span class="text-danger" asp-validation-for="Desc4"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Desc5">Desc5</label>
+                <input asp-for="Desc5" class="form-control input-rounded" placeholder="Desc5">
+                <span class="text-danger" asp-validation-for="Desc5"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="ImageFile">ImageFile</label>
+                <input asp-for="ImageFile" class="form-control input-rounded" placeholder="ImageFile">
+                <span class="text-danger" asp-validation-for="ImageFile"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="img-box col-md-6">
+                <input type="hidden" name="Image" value="@Model.Image" />
+                <img style="max-width: 300px; border-radius: 10px; display:block;" src="~/uploads/blog/@Model.Image" />
+                <button class="btn btn-danger mt-2 remove-img-box" style="margin-left:115px; cursor:pointer">Delete</button>
+            </div>
+        </div>
+        <div class="form-group pt-5 text-center">
+            <button type="submit" class="btn btn-warning btn-rounded font-20 w-25 text-center">Edit</button>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+
+
+
