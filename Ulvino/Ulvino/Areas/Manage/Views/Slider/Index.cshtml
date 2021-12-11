@@ -1,0 +1,74 @@
+﻿@model List<Slider>
+@{
+    ViewData["Title"] = "Index";
+    int order = 0;
+
+}
+
+
+
+<div class="page-content fade-in-up">
+    <div class="ibox ">
+        <div class="ibox-head p-5">
+            <h1>Sliders</h1>
+            <a asp-action="create" class="btn btn-primary font-20  btn-rounded">Create</a>
+        </div>
+        <div class="ibox-body">
+            <table class="table bg-ebony-800 text-white table-bordered " id="example-table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Order</th>
+                        <th class="text-center">Image</th>
+                        <th class="text-center">Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        order++;
+                        <tr>
+                            <td class="align-middle text-center">@order</td>
+                            <td class="align-middle text-center">@item.Order</td>
+                            <td class="text-center align-middle"><img src="~/uploads/slider/@item.Image" style="max-width:200px; border-radius:10px" /></td>
+
+                            <td class="align-middle text-center">
+                                <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-rounded">Edit</a>
+                                <a asp-action="deletefetch" asp-route-id="@item.Id" class="btn btn-danger btn-item-delete btn-rounded ">Delete</a>
+                            </td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section tablejs
+{
+    <script type="text/javascript">
+        $(function() {
+                    $('#example-table').DataTable({
+                        pageLength: 10,
+                        //"ajax": '~/manage/demo/data/table_data.json',
+                        /*"columns": [
+                            { "data": "name" },
+                            { "data": "office" },
+                            { "data": "extn" },
+                            { "data": "start_date" },
+                            { "data": "salary" }
+                        ]*/
+                    });
+     })</script>
+
+    <script src="~/manage/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
+}
+
+
+
