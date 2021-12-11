@@ -1,0 +1,106 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-5 text-warning">Edit</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control input-rounded" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="Desc">Desc</label>
+                <input asp-for="Desc" class="form-control input-rounded" placeholder="Desc">
+                <span class="text-danger" asp-validation-for="Desc"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label class="font-18" asp-for="RegionId">Region</label>
+                <select asp-for="RegionId" id="RegionId" class="form-control input-rounded" asp-items="@(new SelectList(ViewBag.Regions,"Id","Name"))">
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="font-18" asp-for="VariatyId">Variaty</label>
+                <select asp-for="VariatyId" id="VariatyId" class="form-control input-rounded" asp-items="@(new SelectList(ViewBag.Variaties,"Id","Name"))">
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="font-18" asp-for="TypeId">Type</label>
+                <select asp-for="TypeId" id="TypeId" class="form-control input-rounded" asp-items="@(new SelectList(ViewBag.Types,"Id","Name"))">
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label class="font-18" asp-for="CostPrice">CostPrice</label>
+                <input asp-for="CostPrice" class="form-control input-rounded" placeholder="CostPrice">
+                <span class="text-danger" asp-validation-for="CostPrice"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="font-18" asp-for="SalePrice">SalePrice</label>
+                <input asp-for="SalePrice" class="form-control input-rounded" placeholder="SalePrice">
+                <span class="text-danger" asp-validation-for="SalePrice"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="font-18" asp-for="Rate">Rate</label>
+                <input asp-for="Rate" class="form-control input-rounded" placeholder="Rate">
+                <span class="text-danger" asp-validation-for="Rate"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="Vintage">Vintage</label>
+                <input asp-for="Vintage" class="form-control input-rounded" placeholder="Vintage">
+                <span class="text-danger" asp-validation-for="Vintage"></span>
+            </div>
+            <div class="form-group col-md-6 d-flex justify-content-center mt-5">
+                <label class="font-18 ui-checkbox ui-checkbox-info" asp-for="IsFeatured">
+                    <input asp-for="IsFeatured">
+                    <span class="input-span"></span>IsFeatured
+                </label>
+                <span class="text-danger" asp-validation-for="IsFeatured"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="PosterFile">PosterFile</label>
+                <input asp-for="PosterFile" class="form-control input-rounded" placeholder="PosterFile">
+                <span class="text-danger" asp-validation-for="PosterFile"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <input type="hidden" name="Image" value="@Model.ProductImages.FirstOrDefault(x=>x.IsPoster == true)?.Id" />
+                <img style="max-width: 150px; border-radius: 10px; display:block;" src="~/uploads/product/@Model.ProductImages.FirstOrDefault(x=>x.IsPoster == true)?.Image" />
+                <button class="btn btn-danger mt-2 remove-img-box" style="margin-left:50px; cursor:pointer">Delete</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label class="font-18" asp-for="ImageFiles">ImageFiles</label>
+                <input asp-for="ImageFiles" class="form-control input-rounded" placeholder="ImageFiles">
+                <span class="text-danger" asp-validation-for="ImageFiles"></span>
+            </div>
+            @foreach (var file in Model.ProductImages.Where(x => x.IsPoster == false))
+            {
+                <div>
+                    <div class="form-group" style="display: inline-block; position: relative;margin-right:8px">
+                        <input type="hidden" name="ProductImageIds[]" value="@file.Id" />
+                        <img style="max-width: 150px; border-radius: 10px; display: block;" src="~/uploads/product/@file.Image" />
+                        <button class="btn btn-danger mt-2 remove-img-box" style="margin-left: 50px; cursor: pointer">Delete</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="form-group pt-5 text-center">
+            <button type="submit" class="btn btn-warning btn-rounded font-20 w-25 text-center">Edit</button>
+        </div>
+
+    </form>
+</div>
+
+
+
