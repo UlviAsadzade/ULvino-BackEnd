@@ -126,6 +126,13 @@ namespace Ulvino.Areas.Manage.Controllers
                 existBlog.Image = fileName;
             }
 
+            if (blog.Order < 0)
+            {
+                ModelState.AddModelError("Order", "Order can not be less than 0");
+                return View();
+
+            }
+
             existBlog.Order = blog.Order;
             existBlog.Name = blog.Name;
             existBlog.Owner = blog.Owner;

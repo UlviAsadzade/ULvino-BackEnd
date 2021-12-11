@@ -1,0 +1,37 @@
+﻿@model Faq
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-3 text-primary">Create</h1>
+    <form method="post">
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="Question">Question</label>
+                <input asp-for="Question" class="form-control input-rounded" placeholder="Question">
+                <span class="text-danger" asp-validation-for="Question"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="Answer">Answer</label>
+                <input asp-for="Answer" class="form-control input-rounded" placeholder="Answer">
+                <span class="text-danger" asp-validation-for="Answer"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="Order">Order</label>
+                <input asp-for="Order" class="form-control input-rounded" placeholder="Order">
+                <span class="text-danger" asp-validation-for="Order"></span>
+            </div>
+        </div>
+
+        <div class="form-group pt-5 text-center">
+            <button type="submit" class="btn btn-primary btn-rounded font-20 w-25 text-center">Create</button>
+        </div>
+
+    </form>
+</div>
+
+
+
