@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using Ulvino.Models;
 namespace Ulvino.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
 
     public class TypeController : Controller
     {

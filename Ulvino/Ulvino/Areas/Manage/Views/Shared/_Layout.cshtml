@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@inject UserManager<AppUser> userManager
+
+@{
+    AppUser admin = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && x.IsAdmin) : null;
+
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -29,7 +37,7 @@
             <div class="page-brand">
                 <a class="link" asp-action="index" asp-controller="dashboard">
                     <span class="brand py-3">
-                        
+
                         <img style="width:130px" src="~/assets/images/ulvino-header-logo.png" />
 
                     </span>
@@ -175,14 +183,12 @@
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="~/manage/img/admin-avatar.png" />
-                            <span></span>Admin<i class="fa fa-angle-down m-l-5"></i>
+                            <span></span>@admin.FullName<i class="fa fa-angle-down m-l-5"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="profile.html"><i class="fa fa-user"></i>Profile</a>
-                            <a class="dropdown-item" href="profile.html"><i class="fa fa-cog"></i>Settings</a>
-                            <a class="dropdown-item" href="javascript:;"><i class="fa fa-support"></i>Support</a>
+                            <a class="dropdown-item" asp-action="index" asp-controller="dashboard"><i class="fa fa-user"></i>Profile</a>
                             <li class="dropdown-divider"></li>
-                            <a class="dropdown-item" href="login.html"><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="dropdown-item" asp-action="logout" asp-controller="account"><i class="fa fa-power-off"></i>Logout</a>
                         </ul>
                     </li>
                 </ul>
@@ -193,12 +199,12 @@
         <!-- START SIDEBAR-->
         <nav class="page-sidebar" id="sidebar">
             <div id="sidebar-collapse">
-                <div class="admin-block d-flex">
+                <div class="admin-block d-flex align-items-center">
                     <div>
                         <img src="~/manage/img/admin-avatar.png" width="45px" />
                     </div>
                     <div class="admin-info">
-                        <div class="font-strong">James Brown</div><small>Administrator</small>
+                        <div class="font-strong">@admin.FullName</div>
                     </div>
                 </div>
                 <ul class="side-menu metismenu">
