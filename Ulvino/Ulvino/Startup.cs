@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ulvino.Models;
+using Ulvino.Services;
 
 namespace Ulvino
 {
@@ -38,7 +39,7 @@ namespace Ulvino
                 options.Password.RequireNonAlphanumeric = false;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
 
-
+            services.AddScoped<LayoutService>();
             services.AddHttpContextAccessor();
             services.AddSession();
 

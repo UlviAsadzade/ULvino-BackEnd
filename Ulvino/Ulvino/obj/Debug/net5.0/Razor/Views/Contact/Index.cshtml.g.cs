@@ -33,8 +33,15 @@ using Ulvino.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\Views\_ViewImports.cshtml"
+using Ulvino.Services;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8d29607d080e4ae0cfb5f694b10980d260bfa67f", @"/Views/Contact/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1d41d4d07bd35d13f0891971e9257085c90a2e7b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ed6d828dbb91299242046f312d82aa57a5398837", @"/Views/_ViewImports.cshtml")]
     public class Views_Contact_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Setting>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -83,7 +90,7 @@ using Ulvino.ViewModels;
                 <h1>CONTACT</h1>
                 <div class=""page-tab"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d29607d080e4ae0cfb5f694b10980d260bfa67f4994", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d29607d080e4ae0cfb5f694b10980d260bfa67f5187", async() => {
                 WriteLiteral("HOME");
             }
             );
@@ -212,7 +219,7 @@ WriteAttributeValue("", 1933, Model.EmailIcon, 1933, 16, false);
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n                    </div>\r\n\r\n                </div>\r\n                <div class=\"col-8 contact-form\">\r\n                    <h3>TELL US YOUR MESSAGE</h3>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d29607d080e4ae0cfb5f694b10980d260bfa67f11245", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d29607d080e4ae0cfb5f694b10980d260bfa67f11438", async() => {
                 WriteLiteral("\r\n                        <div class=\"contact-form-item\">\r\n                            <label");
                 BeginWriteAttribute("for", " for=\"", 2425, "\"", 2431, 0);
                 EndWriteAttribute();

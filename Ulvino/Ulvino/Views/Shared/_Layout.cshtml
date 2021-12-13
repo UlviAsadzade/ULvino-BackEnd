@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@inject LayoutService service
+
+@{
+    Setting setting = service.GetSetting();
+    
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -49,7 +55,7 @@
                         <li><a asp-controller="shop" asp-action="index">SHOP</a></li>
                         <li>
                             <a asp-controller="home" asp-action="index">
-                                <img class="header-logo" src="~/assets/images/ulvino-header-logo.png" alt="">
+                                <img class="header-logo" src="~/assets/images/@setting.HeaderLogo" alt="">
                             </a>
                         </li>
                         <li><a asp-controller="faq" asp-action="index">FAQ</a></li>
@@ -140,37 +146,36 @@
                     <div class="col-5">
                         <div>
                             <a href="./index.html">
-                                <img class="footer-logo" src="~/assets/images/ulvino-footer-logo.png" alt="">
+                                <img class="footer-logo" src="~/assets/images/@setting.FooterLogo" alt="">
                             </a>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consec tetui ing elit, sed do eiusmod tempor nt uti laborie et
-                            dolore magna aliqua. Ut enim ad minim ven, quis nostrud exercitation ullamcom...
+                            @setting.FooterDesc
                         </p>
                         <div class="footer-icon-box">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>163 North 39th Street, Suite 836 NY 8327-1900</span>
+                            <i class="@setting.LocationIcon"></i>
+                            <span>@setting.Address</span>
                         </div>
                         <div class="footer-icon-box">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>(+555) 0123 686 9999</span>
+                            <i class="@setting.PhoneIcon"></i>
+                            <span>@setting.Phone</span>
                         </div>
                         <div class="footer-icon-box">
-                            <i class="fas fa-envelope"></i>
-                            <span>contact@gmail.com</span>
+                            <i class="@setting.EmailIcon"></i>
+                            <span>@setting.ContactEmail</span>
                         </div>
                         <div class="footer-icon-box">
-                            <i class="fas fa-clock"></i>
-                            <span>Monday - Saturday, 8 am to 10 pm</span>
+                            <i class="@setting.WorkTimeIcon"></i>
+                            <span>@setting.WorkTime</span>
                         </div>
                     </div>
                     <div class="col-2">
                         <h3>INFORMATION</h3>
-                        <a href="./about.html" class="footer-item">About Us</a>
-                        <a href="./shop.html" class="footer-item">Shop</a>
-                        <a href="./faq.html" class="footer-item">FAQ</a>
-                        <a href="./blog.html" class="footer-item">Blog</a>
-                        <a href="./contact.html" class="footer-item">Contact Us</a>
+                        <a asp-controller="about" asp-action="index" class="footer-item">About Us</a>
+                        <a asp-controller="shop" asp-action="index" class="footer-item">Shop</a>
+                        <a asp-controller="faq" asp-action="index" class="footer-item">FAQ</a>
+                        <a asp-controller="blog" asp-action="index" class="footer-item">Blog</a>
+                        <a asp-controller="contact" asp-action="index" class="footer-item">Contact Us</a>
                     </div>
                     <div class="col-2">
                         <h3>MY ACCOUNT</h3>
@@ -183,27 +188,27 @@
                     <div class="col-3 footer-right">
                         <h3>NEWSLETTER</h3>
                         <div class="hotline-box">
-                            <img src="~/assets/images/hotline-img.png" alt="">
+                            <img src="~/assets/images/@setting.HotlineImage" alt="">
                             <div class="hotline-texts">
                                 <h4>Hotline Free 24/24:</h4>
-                                <p>(+800) 123 456 789</p>
+                                <p>@setting.Hotline</p>
                             </div>
 
                         </div>
-                        <span class="footer-right-adress">The Barn, Henley in Arden B578. England.</span>
-                        <span class="footer-right-mail">contact@support.com</span>
+                        <span class="footer-right-adress">@setting.Adress2</span>
+                        <span class="footer-right-mail">@setting.SupportEmail</span>
                         <div class="social-media-icons">
-                            <a href="">
-                                <i class="fab fa-twitter"></i>
+                            <a asp-controller="home" asp-action="index">
+                                <i class="@setting.TwitterIcon"></i>
                             </a>
-                            <a href="">
-                                <i class="fab fa-facebook"></i>
+                            <a asp-controller="home" asp-action="index">
+                                <i class="@setting.FacebookIcon"></i>
                             </a>
-                            <a href="">
-                                <i class="fab fa-google-plus"></i>
+                            <a asp-controller="home" asp-action="index">
+                                <i class="@setting.GooglePlusIcon"></i>
                             </a>
-                            <a href="">
-                                <i class="fab fa-youtube"></i>
+                            <a asp-controller="home" asp-action="index">
+                                <i class="@setting.YoutubeIcon"></i>
                             </a>
                         </div>
                     </div>
@@ -214,7 +219,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row footer-bottom-box">
-                    © Copyright 2021 <a href="">Vegawine</a> - All Rights Reserved - Powered by <a href="">
+                    © Copyright 2021 <a href="">Ulvino</a> - All Rights Reserved - Powered by <a href="">
                         WooVina
                         Theme.
                     </a>
