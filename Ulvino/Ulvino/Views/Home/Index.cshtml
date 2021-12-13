@@ -25,7 +25,7 @@
                 @for (int i = 0; i < Model.Sliders.Count; i++)
                 {
                     <div class="slider-item @(i==0?"active":"")">
-                        <img src="~/assets/images/@Model.Sliders[i].Image" alt="" class="slider-img">
+                        <img src="~/uploads/slider/@Model.Sliders[i].Image" alt="" class="slider-img">
                     </div>
                 }
 
@@ -134,599 +134,95 @@
 
             <div class="container products-box active" id="bestsellers-products">
                 <div class="row">
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>CILLUM DOLORE TORTOR NISL FERMENTUM</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
+                    @foreach (var item in Model.FeaturedProducts)
+                    {
+                        <div class="col-3">
+                            <div class="product-card">
+                                <div class="card-img">
+                                    <a href="">
+                                        <img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster)?.Image" alt="">
+                                    </a>
                                 </div>
-                                <div class="product-price">
-                                    <!-- <del>$45.00</del> -->
-                                    <span>$40.00</span>
+                                <div class="card-body">
+                                    <h5>@item.Name</h5>
+                                    <div class="product-rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="product-price">
+                                        <!-- <del>$45.00</del> -->
+                                        <span>$@item.SalePrice.00</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
+                                <div class="product-icons">
+                                    <a href="" class="wishlist-button">
+                                        <i class="far fa-heart"></i>
+                                    </a>
 
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
+                                    <a href="">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
 
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
+                                    <a data-bs-toggle="modal" data-bs-target="#productModal">
+                                        <i class="fas fa-expand-alt"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Morbi ornare vestibulum massa</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <!-- <del>$45.00</del> -->
-                                    <span>$20.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
+                    }
 
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Dignissim venenatis tellus ac nulla</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <!-- <del>$45.00</del> -->
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Mauris tincidunt eros posuere placerat</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <del>$22.00</del>
-                                    <span>$19.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-5.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Mirum est notare tellus eu nibh</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <del>$75.00</del>
-                                    <span>$69.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-6.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Eodem modo vel mattis ante facilisis</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <del>$50.00</del>
-                                    <span>$45.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-7.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Officiis debitis varius risus dignissim</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <del>$60.00</del>
-                                    <span>$33.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-8.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Duis pulvinar obortis eleifend</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <span>$95.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 
             <div class="container products-box" id="populars-products">
                 <div class="row">
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-8.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>CILLUM DOLORE TORTOR NISL FERMENTUM</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
+                    @foreach (var item in Model.PopularProducts)
+                    {
+                        <div class="col-3">
+                            <div class="product-card">
+                                <div class="card-img">
+                                    <a href="">
+                                        <img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster)?.Image" alt="">
+                                    </a>
                                 </div>
-                                <div class="product-price">
-                                    <!-- <del>$45.00</del> -->
-                                    <span>$40.00</span>
+                                <div class="card-body">
+                                    <h5>@item.Name</h5>
+                                    <div class="product-rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="product-price">
+                                        <!-- <del>$45.00</del> -->
+                                        <span>$@item.SalePrice.00</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
+                                <div class="product-icons">
+                                    <a href="" class="wishlist-button">
+                                        <i class="far fa-heart"></i>
+                                    </a>
 
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
+                                    <a href="">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
 
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
+                                    <a data-bs-toggle="modal" data-bs-target="#productModal">
+                                        <i class="fas fa-expand-alt"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-7.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Morbi ornare vestibulum massa</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <!-- <del>$45.00</del> -->
-                                    <span>$20.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
 
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
+                    }
 
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-6.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Dignissim venenatis tellus ac nulla</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <!-- <del>$45.00</del> -->
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-5.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Mauris tincidunt eros posuere placerat</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <del>$22.00</del>
-                                    <span>$19.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Mirum est notare tellus eu nibh</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <del>$75.00</del>
-                                    <span>$69.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Eodem modo vel mattis ante facilisis</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <del>$50.00</del>
-                                    <span>$45.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Officiis debitis varius risus dignissim</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <del>$60.00</del>
-                                    <span>$33.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <div class="product-card">
-                            <div class="card-img">
-                                <a href="">
-                                    <img src="~/assets/images/wine-1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h5>Duis pulvinar obortis eleifend</h5>
-                                <div class="product-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <div class="product-price">
-                                    <span>$95.00</span>
-                                </div>
-                            </div>
-                            <div class="product-icons">
-                                <a href="" class="wishlist-button">
-                                    <i class="far fa-heart"></i>
-                                </a>
-
-                                <a href="">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-
-                                <a data-bs-toggle="modal" data-bs-target="#productModal">
-                                    <i class="fas fa-expand-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -747,40 +243,21 @@
                     <div>
                         <img src="~/assets/images/glass.png" alt="">
                     </div>
-                    <h5>Deor Mrances Grape</h5>
-                    <h2>OUR CUSTOMERS</h2>
+                    <h5>@Model.Settings.CustomerSubtitle</h5>
+                    <h2>@Model.Settings.CustomerTitle</h2>
                     <p class="customers-right-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        @Model.Settings.CustomerDesc
                     </p>
                     <div class="container">
                         <div class="row customers-right-images">
-                            <div class="col-4">
-                                <img src="~/assets/images/squarebox.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="~/assets/images/dressmaker.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="~/assets/images/rewined.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="~/assets/images/appxgames.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="~/assets/images/brian.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="~/assets/images/dressmaker.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="~/assets/images/brian.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="~/assets/images/dressmaker.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img src="~/assets/images/appxgames.jpg" alt="">
-                            </div>
+                            @foreach (var item in Model.Customers)
+                            {
+                                <div class="col-4">
+                                    <img src="~/uploads/customer/@item.Image" alt="">
+                                </div>
+
+                            }
+                            
 
                         </div>
                     </div>
@@ -911,89 +388,29 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-6">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="last-blog-left">
-                                        <a href="">
-                                            <img src="~/assets/images/last-blog-1.jpg" alt="">
-                                        </a>
+                    @foreach (var item in Model.Blogs)
+                    {
+                        <div class="col-6">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="last-blog-left">
+                                            <a href="">
+                                                <img src="~/uploads/blog/@item.Image" alt="">
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-6 last-blog-right">
-                                    <h4>SAMPLE POST WITH FORMAT IMAGE</h4>
-                                    <p class="blog-desc">
-                                        Maecenas eget congue augue. Sed mollis tempor velit, et tempor justo cursus
-                                        vel. Phasellus lacinia…
-                                    </p>
+                                    <div class="col-6 last-blog-right">
+                                        <h4>@item.Name</h4>
+                                        <p class="blog-desc">
+                                            @item.Desc1
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-6">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="last-blog-left">
-                                        <a href="">
-                                            <img src="~/assets/images/last-blog-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-6 last-blog-right">
-                                    <h4>SAMPLE POST WITH FORMAT IMAGE</h4>
-                                    <p class="blog-desc">
-                                        Maecenas eget congue augue. Sed mollis tempor velit, et tempor justo cursus
-                                        vel. Phasellus lacinia…
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="last-blog-left">
-                                        <a href="">
-                                            <img src="~/assets/images/last-blog-2.jpg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-6 last-blog-right">
-                                    <h4>SAMPLE POST WITH FORMAT IMAGE</h4>
-                                    <p class="blog-desc">
-                                        Maecenas eget congue augue. Sed mollis tempor velit, et tempor justo cursus
-                                        vel. Phasellus lacinia…
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="last-blog-left">
-                                        <a href="">
-                                            <img src="~/assets/images/last-blog-1.jpg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-6 last-blog-right">
-                                    <h4>SAMPLE POST WITH FORMAT IMAGE</h4>
-                                    <p class="blog-desc">
-                                        Maecenas eget congue augue. Sed mollis tempor velit, et tempor justo cursus
-                                        vel. Phasellus lacinia…
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
 
 
                 </div>

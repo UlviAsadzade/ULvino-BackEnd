@@ -11,7 +11,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="icon" href="https://demo-40.woovinapro.com/wp-content/uploads/2020/07/favi-icon.png" sizes="192x192">
 
-    <title>Home</title>
+    <title>Ulvino</title>
 </head>
 
 <body>
@@ -45,17 +45,17 @@
                             </div>
                         </li>
 
-                        <li><a href="./index.html">HOME</a></li>
-                        <li><a href="./about.html">ABOUT US</a></li>
-                        <li><a href="./shop.html">SHOP</a></li>
+                        <li><a asp-controller="home" asp-action="index">HOME</a></li>
+                        <li><a asp-controller="about" asp-action="index">ABOUT US</a></li>
+                        <li><a asp-controller="shop" asp-action="index">SHOP</a></li>
                         <li>
-                            <a href="./index.html">
+                            <a asp-controller="home" asp-action="index">
                                 <img class="header-logo" src="~/assets/images/ulvino-header-logo.png" alt="">
                             </a>
                         </li>
-                        <li><a href="./faq.html">FAQ</a></li>
-                        <li><a href="./blog.html">BLOG</a></li>
-                        <li><a href="./contact.html">CONTACT US</a></li>
+                        <li><a asp-controller="faq" asp-action="index">FAQ</a></li>
+                        <li><a asp-controller="blog" asp-action="index">BLOG</a></li>
+                        <li><a asp-controller="contact" asp-action="index">CONTACT US</a></li>
                         <li>
                             <a class="searchModal" data-bs-toggle="modal" data-bs-target="#searchModal">
                                 <i class="fas fa-search"></i>

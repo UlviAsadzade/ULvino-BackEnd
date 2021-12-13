@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,11 @@ namespace Ulvino.Controllers
             HomeViewModel homeVM = new HomeViewModel
             {
                 Sliders = _context.Sliders.ToList(),
-                Blogs = _context.Blogs.ToList()
+                Blogs = _context.Blogs.Take(4).ToList(),
+                FeaturedProducts = _context.Products.Include(x=>x.ProductImages).Where(x=>x.IsFeatured).Take(8).ToList(),
+                PopularProducts = _context.Products.Include(x=>x.ProductImages).Where(x=>x.Rate>4).Take(8).ToList(),
+                Customers = _context.Customers.ToList(),
+                Settings = _context.Settings.FirstOrDefault()
             };
 
             return View(homeVM);

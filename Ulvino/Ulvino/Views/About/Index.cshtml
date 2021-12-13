@@ -1,0 +1,192 @@
+﻿@model AboutViewModel
+
+@{
+    ViewData["Title"] = "About";
+}
+
+
+    <section class="page-title" style="background-image: url('./assets/images/page-title.jpg');">
+        <div class="container">
+            <div class="row">
+                <h1>ABOUT US</h1>
+                <div class="page-tab">
+                    <a asp-controller="home" asp-action="index">HOME</a>
+                    <i class="fas fa-angle-right"></i>
+                    <span>ABOUT US</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="about-main-left">
+                        <div>
+                            <img class="deal-left-icon" src="~/assets/images/glass.png" alt="">
+                        </div>
+                        <h2>@Model.Abouts.Title</h2>
+                        <p>
+                            @Model.Abouts.Desc
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="about-main-right">
+                        <img src="~/uploads/about/@Model.Abouts.Image" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-numbers">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-3 about-numbers-box ">
+                    <div class="about-numbers-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>7552</h3>
+                    <p>HAPPY FOLLOWERS</p>
+                </div>
+
+                <div class="col-3 about-numbers-box black">
+                    <div class="about-numbers-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>6345</h3>
+                    <p>WORKING HOURS</p>
+                </div>
+
+                <div class="col-3 about-numbers-box">
+                    <div class="about-numbers-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>2597</h3>
+                    <p>PROJECTS DONE</p>
+                </div>
+
+                <div class="col-3 about-numbers-box black">
+                    <div class="about-numbers-icon">
+                        <i class="fas fa-align-left"></i>
+                    </div>
+                    <h3>9059</h3>
+                    <p>LINES OF CODE</p>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <img class="deal-left-icon" src="./assets/images/glass.png" alt="">
+                </div>
+                <h2>WHY CHOOSE US</h2>
+                <div class="container">
+                    <div class="row">
+                        @foreach (var item in Model.Features)
+                        {
+                            <div class="col-3 why-choose-us-box">
+                                <div class="why-choose-us-img">
+                                    <img src="~/uploads/feature/@item.Image" alt="">
+                                </div>
+                                <h3>@item.Title</h3>
+                                <p>
+                                    @item.Desc
+                                </p>
+                            </div>
+
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="our-process" style="background-image: url('./assets/images/our-process-bg.jpg');">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <img class="deal-left-icon" src="./assets/images/glass.png" alt="">
+                </div>
+                <h2>OUR PROCESS</h2>
+                <p>
+                    @Model.Settings.ProcessDesc
+                </p>
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="our-process-main">
+
+                            @foreach (var item in Model.Processes)
+                            {
+                                <div class="process-box">
+                                    <div class="process-icon">
+                                        <i class="@item.Icon"></i>
+                                    </div>
+                                    <span>@item.Title</span>
+                                </div>
+
+                            }
+                            
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="our-team">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <img class="deal-left-icon" src="./assets/images/glass.png" alt="">
+                </div>
+                <h2> MEET OUR TEAM </h2>
+                <div class="container">
+                    <div class="row">
+
+                        @foreach (var item in Model.Teams)
+                        {
+                            <div class="col-3 team-box">
+                                <div class="team-img">
+                                    <img src="~/uploads/Team/@item.Image" alt="">
+                                </div>
+                                <div class="team-person">
+                                    <p>@item.FullName</p>
+                                    <span>@item.Profession</span>
+                                </div>
+                                <div class="team-person-social-media">
+                                    <a asp-controller="about" asp-action="index">
+                                        <i class="@Model.Settings.FacebookIcon"></i>
+                                    </a>
+                                    <a asp-controller="about" asp-action="index">
+                                        <i class="@Model.Settings.TwitterIcon"></i>
+                                    </a>
+                                    <a asp-controller="about" asp-action="index">
+                                        <i class="@Model.Settings.GooglePlusIcon"></i>
+                                    </a>
+                                    <a asp-controller="about" asp-action="index">
+                                        <i class="@Model.Settings.PinterestIcon"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+

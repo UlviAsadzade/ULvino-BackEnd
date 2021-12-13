@@ -10,6 +10,10 @@ namespace Ulvino.ViewModels
     {
         public List<Slider> Sliders { get; set; }
         public List<Blog> Blogs { get; set; }
+        public List<Product> FeaturedProducts { get; set; }
+        public List<Product> PopularProducts { get; set; }
+        public List<Customer> Customers { get; set; }
+        public Setting Settings { get; set; }
 
     }
 }

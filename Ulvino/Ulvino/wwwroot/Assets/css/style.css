@@ -1537,6 +1537,8 @@ body {
         body .feature-products .feature-products-main .products-box .product-card .card-img {
           border-radius: 20px 20px 0 0;
           border-bottom: 1px solid #e5e5e5;
+          min-height:340px;
+          max-height:340px;
           overflow: hidden; }
           body .feature-products .feature-products-main .products-box .product-card .card-img img {
             width: 100%;
@@ -2198,6 +2200,7 @@ body {
       margin-bottom: 15px; }
       body .our-team .team-box .team-img img {
         max-width: 100%;
+        min-height:300px;
         border-radius: 20px; }
     body .our-team .team-box .team-person p {
       color: #a34253;
