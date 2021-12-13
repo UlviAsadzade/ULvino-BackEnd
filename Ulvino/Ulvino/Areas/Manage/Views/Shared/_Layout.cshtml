@@ -183,7 +183,7 @@
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="~/manage/img/admin-avatar.png" />
-                            <span></span>@admin.FullName<i class="fa fa-angle-down m-l-5"></i>
+                            <span></span>@admin.UserName<i class="fa fa-angle-down m-l-5"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" asp-action="index" asp-controller="dashboard"><i class="fa fa-user"></i>Profile</a>
@@ -204,7 +204,7 @@
                         <img src="~/manage/img/admin-avatar.png" width="45px" />
                     </div>
                     <div class="admin-info">
-                        <div class="font-strong">@admin.FullName</div>
+                        <div class="font-strong">@admin.UserName</div>
                     </div>
                 </div>
                 <ul class="side-menu metismenu">
@@ -212,6 +212,20 @@
                         <a class="active" asp-action="index" asp-controller="dashboard">
                             <i class="sidebar-item-icon fa fa-th-large"></i>
                             <span class="nav-label">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-action="index" asp-controller="admin">
+                            <i class="sidebar-item-icon fa fa-file-text"></i>
+                            <span class="nav-label">Admins</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-action="index" asp-controller="role">
+                            <i class="sidebar-item-icon fa fa-file-text"></i>
+                            <span class="nav-label">Roles</span>
                         </a>
                     </li>
 

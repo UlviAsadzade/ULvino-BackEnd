@@ -1,0 +1,43 @@
+﻿@model AdminViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-3 text-primary">Create</h1>
+    <form method="post">
+        <div class="form-group">
+            <label class="font-18" asp-for="FullName">FullName</label>
+            <input asp-for="FullName" class="form-control input-rounded" placeholder="FullName">
+            <span class="text-danger" asp-validation-for="FullName"></span>
+        </div>
+        <div class="form-group">
+            <label class="font-18" asp-for="UserName">UserName</label>
+            <input asp-for="UserName" class="form-control input-rounded" placeholder="UserName">
+            <span class="text-danger" asp-validation-for="UserName"></span>
+        </div>
+        <div class="form-group">
+            <label class="font-18" asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control input-rounded" placeholder="Email">
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+        <div class="form-group">
+            <label class="font-18" asp-for="Password">Password</label>
+            <input asp-for="Password" class="form-control input-rounded" placeholder="Password">
+            <span class="text-danger" asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group">
+            <label class="font-18" asp-for="ConfirmPassword">ConfirmPassword</label>
+            <input asp-for="ConfirmPassword" class="form-control input-rounded" placeholder="ConfirmPassword">
+            <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+        </div>
+
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+        <div class="form-group pt-5 text-center">
+            <button type="submit" class="btn btn-primary btn-rounded font-20 w-25 text-center">Create</button>
+        </div>
+
+    </form>
+</div>
+

@@ -188,4 +188,8 @@ C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Product\Create.cshtml.g.cs
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Product\Edit.cshtml.g.cs
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Account\Login.cshtml.g.cs
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Role\Index.cshtml.g.cs
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Admin\Index.cshtml.g.cs
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Admin\Create.cshtml.g.cs
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Ulvino.csproj.AssemblyReference.cache
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Role\Create.cshtml.g.cs
