@@ -197,3 +197,4 @@ C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Ulvino.genruntimeconfig.cache
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Blog\Detail.cshtml.g.cs
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Contact\Index.cshtml.g.cs
