@@ -1,0 +1,57 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+    <section class="page-title" style="background-image: url('./assets/images/page-title.jpg');">
+        <div class="container">
+            <div class="row">
+                <h1>BLOG</h1>
+                <div class="page-tab">
+                    <a asp-controller="home" asp-action="index">HOME</a>
+                    <i class="fas fa-angle-right"></i>
+                    <span>BLOG</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-main">
+        <div class="container">
+            <div class="row d-flex justify-content-around">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-6 blog-main-box">
+                        <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="blog-image">
+                            <img src="~/uploads/blog/@item.Image" alt="">
+                        </a>
+                        <h4>@item.Name</h4>
+                        <div class="blog-date">
+                            <i class="far fa-user"></i>
+                            <span>@item.Owner</span>
+                            <span>-</span>
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>@item.Date.ToShortDateString()</span>
+                        </div>
+                        <p class="blog-desc">
+                            @item.Desc2
+                        </p>
+                        <a asp-controller="blog" asp-action="detail" asp-route-id="@item.Id" class="blog-continue">Read More</a>
+                    </div>
+
+                }
+                
+            </div>
+        </div>
+    </section>
+
+
+
+@section blogjs
+{
+    <script src="./assets/js/blog.js"></script>
+}
+

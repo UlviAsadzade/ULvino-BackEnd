@@ -1,0 +1,62 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+
+    <section class="page-title" style="background-image: url('./assets/images/page-title.jpg');">
+        <div class="container">
+            <div class="row">
+                <h1>BLOG DETAIL</h1>
+                <div class="page-tab">
+                    <a asp-controller="home" asp-action="index">HOME</a>
+                    <i class="fas fa-angle-right"></i>
+                    <a asp-controller="blog" asp-action="index">BLOG</a>
+                    <i class="fas fa-angle-right"></i>
+                    <span>BLOG NAME</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-detail-main">
+        <div class="container">
+            <div class="row">
+                <div class="blog-detail-box">
+                    <h2>@Model.Name</h2>
+                    <div class="blog-date">
+                        <i class="far fa-user"></i>
+                        <span>@Model.Owner</span>
+                        <span>-</span>
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>@Model.Date.ToShortDateString()</span>
+                    </div>
+                    <div class="blog-detail-img">
+                        <img src="~/uploads/blog/@Model.Image" alt="">
+                    </div>
+                    <div class="blog-detail-desc">
+                        <p>
+                            @Model.Desc1
+                        </p>
+                        <p>
+                            @Model.Desc2
+                        </p>
+                        <p>
+                            @Model.Desc3
+                        </p>
+                        <p>
+                            @Model.Desc4
+                        </p>
+                        <p>
+                            @Model.Desc5
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
