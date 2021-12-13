@@ -1968,6 +1968,9 @@ body {
         body .modal#productModal .modal-dialog .modal-content .modal-body .shop-detail-left {
           border: 1px solid #ebebeb;
           border-radius: 5px; }
+            body .modal#productModal .modal-dialog .modal-content .modal-body .shop-detail-left img {
+                width:100%;
+            }
           body .modal#productModal .modal-dialog .modal-content .modal-body .shop-detail-left span {
             filter: invert(1); }
         body .modal#productModal .modal-dialog .modal-content .modal-body .shop-detail-right {

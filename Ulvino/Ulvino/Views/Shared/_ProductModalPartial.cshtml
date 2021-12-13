@@ -1,0 +1,65 @@
+﻿@model Product
+
+<div class="row">
+    <div class="col-6 shop-detail-left">
+        <div class="modal-product-img">
+            <img src="~/uploads/product/@Model.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image" alt="#">
+        </div>
+
+    </div>
+    <div class="col-6 shop-detail-right">
+        <h2>@Model.Name</h2>
+        <p class="price">$@Model.SalePrice.00</p>
+        <div class="product-desc">
+            @Model.Desc
+        </div>
+        <div class="product-quantity-box">
+            <div class="product-quantity">
+                <a href="" class="minus">-</a>
+                <span class="quantity-count">1</span>
+                <a href="" class="plus">+</a>
+            </div>
+            <button class="add-button add-cart">ADD TO CART</button>
+            <button class="add-button">WISHLIST</button>
+        </div>
+        <hr>
+        <div class="shop-details-box">
+            <p>Variety:</p>
+            <span>@Model.Variaty.Name</span>
+        </div>
+        <div class="shop-details-box">
+            <p>Type:</p>
+            <span>@Model.Type.Name</span>
+        </div>
+        <div class="shop-details-box">
+            <p>Vintage:</p>
+            <span>@Model.Vintage.ToString("yyyy")</span>
+        </div>
+        <div class="shop-details-box">
+            <p>Region:</p>
+            <span>@Model.Region.Name</span>
+        </div>
+        <div class="product-rating-box">
+            <div class="product-rate">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    if (i <= Model.Rate)
+                    {
+                        <i class="fas fa-star"></i>
+
+                    }
+                    else
+                    {
+                        <i class="far fa-star"></i>
+
+                    }
+                }
+                
+            </div>
+            <a href="" class="product-review-count">
+                ( 5 Reviews )
+            </a>
+        </div>
+    </div>
+</div>
+

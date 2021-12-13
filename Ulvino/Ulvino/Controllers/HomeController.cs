@@ -35,6 +35,18 @@ namespace Ulvino.Controllers
             return View(homeVM);
         }
 
-        
+
+        public IActionResult GetProduct(int id)
+        {
+            Product product = _context.Products
+                .Include(x => x.ProductImages).Include(x => x.Variaty)
+                .Include(x => x.Type)
+                .Include(x => x.Region)
+                .FirstOrDefault(x => x.Id == id);
+
+            return PartialView("_ProductModalPartial", product);
+        }
+
+
     }
 }

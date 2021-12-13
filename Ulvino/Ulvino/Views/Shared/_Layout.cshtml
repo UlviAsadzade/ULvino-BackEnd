@@ -52,7 +52,7 @@
 
                         <li><a asp-controller="home" asp-action="index">HOME</a></li>
                         <li><a asp-controller="about" asp-action="index">ABOUT US</a></li>
-                        <li><a asp-controller="shop" asp-action="index">SHOP</a></li>
+                        <li><a asp-controller="product" asp-action="index">SHOP</a></li>
                         <li>
                             <a asp-controller="home" asp-action="index">
                                 <img class="header-logo" src="~/assets/images/@setting.HeaderLogo" alt="">
@@ -172,7 +172,7 @@
                     <div class="col-2">
                         <h3>INFORMATION</h3>
                         <a asp-controller="about" asp-action="index" class="footer-item">About Us</a>
-                        <a asp-controller="shop" asp-action="index" class="footer-item">Shop</a>
+                        <a asp-controller="product" asp-action="index" class="footer-item">Shop</a>
                         <a asp-controller="faq" asp-action="index" class="footer-item">FAQ</a>
                         <a asp-controller="blog" asp-action="index" class="footer-item">Blog</a>
                         <a asp-controller="contact" asp-action="index" class="footer-item">Contact Us</a>
@@ -309,84 +309,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6 shop-detail-left">
-                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="./assets/images/wine-1.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./assets/images/wine-2.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="./assets/images/wine-3.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                                            data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                                            data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
+                    <div class="container " id="product-modal-detail">
 
-                            </div>
-                            <div class="col-6 shop-detail-right">
-                                <h2>AUCTOR GRAVIDA ENIM PELLENTESQUE</h2>
-                                <p class="price">$33.00</p>
-                                <div class="product-desc">
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
-                                    Consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    Ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce
-                                    ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit
-                                    est, sed commodo augue nisi non neque.
-                                </div>
-                                <div class="product-quantity-box">
-                                    <div class="product-quantity">
-                                        <a href="" class="minus">-</a>
-                                        <span class="quantity-count">1</span>
-                                        <a href="" class="plus">+</a>
-                                    </div>
-                                    <button class="add-button add-cart">ADD TO CART</button>
-                                    <button class="add-button">WISHLIST</button>
-                                </div>
-                                <hr>
-                                <div class="shop-details-box">
-                                    <p>Variety:</p>
-                                    <span>Cabernet Sauvignon</span>
-                                </div>
-                                <div class="shop-details-box">
-                                    <p>Type:</p>
-                                    <span>Red</span>
-                                </div>
-                                <div class="shop-details-box">
-                                    <p>Vintage:</p>
-                                    <span>1986</span>
-                                </div>
-                                <div class="shop-details-box">
-                                    <p>Region:</p>
-                                    <span>Bordeaux</span>
-                                </div>
-                                <div class="product-rating-box">
-                                    <div class="product-rate">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <a href="" class="product-review-count">
-                                        ( 5 Reviews )
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -406,14 +331,13 @@
     <!-- Modal for Search finish -->
 
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="~/assets/js/main.js"></script>
     @RenderSection("homejs", required: false)
     @RenderSection("faqjs", required: false)
     @RenderSection("blogjs", required: false)
 
     <script src="https://kit.fontawesome.com/b26885e958.js" crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>

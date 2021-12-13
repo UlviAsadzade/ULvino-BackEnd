@@ -146,14 +146,21 @@
                                 <div class="card-body">
                                     <h5>@item.Name</h5>
                                     <div class="product-rate">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= item.Rate)
+                                            {
+                                                <i class="fas fa-star"></i>
+
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-star"></i>
+
+                                            }
+                                        }
                                     </div>
                                     <div class="product-price">
-                                        <!-- <del>$45.00</del> -->
                                         <span>$@item.SalePrice.00</span>
                                     </div>
                                 </div>
@@ -166,7 +173,7 @@
                                         <i class="fas fa-shopping-cart"></i>
                                     </a>
 
-                                    <a data-bs-toggle="modal" data-bs-target="#productModal">
+                                    <a data-bs-toggle="modal" data-bs-target="#productModal" class="show-product-modal" data-id="@item.Id">
                                         <i class="fas fa-expand-alt"></i>
                                     </a>
                                 </div>
@@ -193,14 +200,21 @@
                                 <div class="card-body">
                                     <h5>@item.Name</h5>
                                     <div class="product-rate">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= item.Rate)
+                                            {
+                                                <i class="fas fa-star"></i>
+
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-star"></i>
+
+                                            }
+                                        }
                                     </div>
                                     <div class="product-price">
-                                        <!-- <del>$45.00</del> -->
                                         <span>$@item.SalePrice.00</span>
                                     </div>
                                 </div>
@@ -213,7 +227,7 @@
                                         <i class="fas fa-shopping-cart"></i>
                                     </a>
 
-                                    <a data-bs-toggle="modal" data-bs-target="#productModal">
+                                    <a data-bs-toggle="modal" data-bs-target="#productModal" class="show-product-modal" data-id="@item.Id">
                                         <i class="fas fa-expand-alt"></i>
                                     </a>
                                 </div>
