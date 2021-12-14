@@ -198,3 +198,6 @@ C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Blog\Detail.cshtml.g.cs
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Contact\Index.cshtml.g.cs
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Shared\_ProductModalPartial.cshtml.g.cs
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Product\Detail.cshtml.g.cs
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Ulvino.csproj.AssemblyReference.cache

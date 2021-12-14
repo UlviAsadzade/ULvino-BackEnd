@@ -1,0 +1,200 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    int selectedPage = ViewBag.SelectedPage;
+    decimal totalPage = ViewBag.TotalPage;
+}
+
+
+
+    <section class="page-title" style="background-image: url('./assets/images/page-title.jpg');">
+        <div class="container">
+            <div class="row">
+                <h1>SHOP</h1>
+                <div class="page-tab">
+                    <a asp-controller="home" asp-action="index">HOME</a>
+                    <i class="fas fa-angle-right"></i>
+                    <span>SHOP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="shop-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <aside>
+                        <div class="shop-search">
+                            <form action="#" class="input-group mb-3">
+                                <input type="text" class="form-control input-text" name="search" placeholder="Search products...." value="@ViewBag.CurrentSearch">
+                                <button type="submit" class="btn btn-search btn-lg"><i class="fas fa-search"></i></button>
+                            </form>
+                            
+                        </div>
+                        <div class="shop-categories">
+                            <h4>Varietal</h4>
+                            <ul>
+                                @foreach (var item in Model.Variaties)
+                                {
+                                    <li>
+                                        <a asp-action="index" asp-controller="product" asp-route-variatyId="@item.Id">@item.Name (@item.Products.Count()) </a>
+                                    </li>
+                                }
+                               
+                            </ul>
+                        </div>
+                        <div class="shop-categories">
+                            <h4>Type</h4>
+                            <ul>
+                                @foreach (var item in Model.Types)
+                                {
+                                    <li>
+                                        <a asp-action="index" asp-controller="product" asp-route-typeId="@item.Id">@item.Name (@item.Products.Count()) </a>
+                                    </li>
+                                }
+                                
+                            </ul>
+                        </div>
+                        <div class="shop-categories">
+                            <h4>Region</h4>
+                            <ul>
+                                @foreach (var item in Model.Regions)
+                                {
+                                    <li>
+                                        <a asp-action="index" asp-controller="product" asp-route-regionId="@item.Id">@item.Name (@item.Products.Count()) </a>
+                                    </li>
+                                }
+                                
+                            </ul>
+                        </div>
+                        <div class="shop-categories">
+                            <h4>Vintage</h4>
+                            <ul>
+                                <li>
+                                    <a asp-action="index" asp-controller="product" asp-route-oldYearsId="1">1900 and Before </a>
+                                </li>
+                                <li>
+                                    <a asp-action="index" asp-controller="product" asp-route-middleYearsId="2">1901 - 1990 </a>
+                                </li>
+                                <li>
+                                    <a asp-action="index" asp-controller="product" asp-route-newYearsId="3">1991 and After </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="shop-categories">
+                            <h4>Price Range</h4>
+                            <ul>
+                                <li>
+                                    <a asp-action="index" asp-controller="product" asp-route-cheapPriceId="1">$0 - $100 </a>
+                                </li>
+                                <li>
+                                    <a asp-action="index" asp-controller="product" asp-route-middlePriceId="2">$100 - $300 </a>
+                                </li>
+                                <li>
+                                    <a asp-action="index" asp-controller="product" asp-route-expensivePriceId="3">More $300 </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </aside>
+                </div>
+                <div class="col-9">
+                    <div class="shop-products">
+                        <div class="container">
+                            <div class="row">
+                                @foreach (var item in Model.Products)
+                                {
+                                    <div class="col-4">
+                                        <div class="product-card">
+                                            <div class="card-img">
+                                                <a asp-controller="product" asp-action="detail" asp-route-id="@item.Id">
+                                                    <img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5>@item.Name</h5>
+                                                <div class="product-rate">
+                                                    @for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        if (i <= item.Rate)
+                                                        {
+                                                            <i class="fas fa-star"></i>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="far fa-star"></i>
+
+                                                        }
+                                                    }
+                                                </div>
+                                                <div class="product-price">
+                                                    <span>$@item.SalePrice.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-icons">
+                                                <a href="" class="wishlist-button">
+                                                    <i class="far fa-heart"></i>
+                                                </a>
+
+                                                <a href="">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+
+                                                <a data-bs-toggle="modal" data-bs-target="#productModal" class="show-product-modal" data-id="@item.Id">
+                                                    <i class="fas fa-expand-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination">
+                        <nav class="pagination-outer" aria-label="Page navigation">
+                            <ul class="pagination">
+
+                                @if (selectedPage > 1)
+                                {
+                                    <li class="page-item">
+                                        <a asp-action="index" asp-route-page="@(selectedPage-1)" asp-route-search="@ViewBag.CurrentSearch" asp-route-regionIdId="@ViewBag.CurrentRegionId" asp-route-typeId="@ViewBag.CurrentTypeId" asp-route-variatyId="@ViewBag.CurrentVariatyId" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                        </a>
+                                    </li>
+                                }
+
+                                @{
+                                    int startPage = (selectedPage == 1 || totalPage <= 3) ? 1 : selectedPage < totalPage ? selectedPage - 1 : selectedPage - 2;
+                                    int endPage = totalPage > 2 ? startPage + 2 : (int)totalPage;
+                                }
+
+                                @for (int i = startPage; i <= endPage; i++)
+                                {
+                                    <li class="page-item @(i==selectedPage?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@i" asp-route-search="@ViewBag.CurrentSearch" asp-route-regionIdId="@ViewBag.CurrentRegionId" asp-route-typeId="@ViewBag.CurrentTypeId" asp-route-variatyId="@ViewBag.CurrentVariatyId">@i</a></li>
+
+                                }
+
+                                @if (selectedPage < totalPage)
+                                {
+                                   
+                                    <li class="page-item">
+                                        <a asp-action="index" asp-route-page="@(selectedPage+1)" asp-route-search="@ViewBag.CurrentSearch" asp-route-regionIdId="@ViewBag.CurrentRegionId" asp-route-typeId="@ViewBag.CurrentTypeId" asp-route-variatyId="@ViewBag.CurrentVariatyId" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+

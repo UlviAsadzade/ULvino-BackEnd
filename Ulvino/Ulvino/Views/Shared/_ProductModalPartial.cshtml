@@ -2,9 +2,28 @@
 
 <div class="row">
     <div class="col-6 shop-detail-left">
-        <div class="modal-product-img">
-            <img src="~/uploads/product/@Model.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image" alt="#">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.ProductImages.Count(); i++)
+                {
+                    <div class="carousel-item @(i==0 ? "active":"")">
+                        <img src="~/uploads/product/@Model.ProductImages[i].Image" class="d-block w-100" alt="...">
+                    </div>
+                }
+                
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+        
 
     </div>
     <div class="col-6 shop-detail-right">
@@ -24,7 +43,7 @@
         </div>
         <hr>
         <div class="shop-details-box">
-            <p>Variety:</p>
+            <p>Variaty:</p>
             <span>@Model.Variaty.Name</span>
         </div>
         <div class="shop-details-box">
@@ -54,7 +73,7 @@
 
                     }
                 }
-                
+
             </div>
             <a href="" class="product-review-count">
                 ( 5 Reviews )
@@ -62,4 +81,5 @@
         </div>
     </div>
 </div>
+
 

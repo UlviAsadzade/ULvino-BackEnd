@@ -2327,10 +2327,13 @@ body {
       border-radius: 20px;
       text-align: center;
       box-shadow: 0 0 8px #a34253; }
-      body .shop-main .shop-products .product-card .card-img {
-        border-radius: 20px 20px 0 0;
-        border-bottom: 1px solid #e5e5e5;
-        overflow: hidden; }
+        body .shop-main .shop-products .product-card .card-img {
+            border-radius: 20px 20px 0 0;
+            border-bottom: 1px solid #e5e5e5;
+            min-height: 340px;
+            max-height: 340px;
+            overflow: hidden;
+        }
         body .shop-main .shop-products .product-card .card-img img {
           width: 100%;
           border-radius: 20px 20px 0 0;
@@ -3021,6 +3024,7 @@ body {
           top: 5%;
           right: 8%;
           opacity: 0;
+          cursor:pointer;
           transition: 0.5s all; }
           body .same-category-product .products-box .product-card .product-icons i {
             color: #a34253;

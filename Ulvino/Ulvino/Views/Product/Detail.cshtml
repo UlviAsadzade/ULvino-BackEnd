@@ -1,0 +1,257 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Detail";
+    List<Product> sameProducts = ViewBag.SameProducts;
+}
+
+
+<section class="page-title" style="background-image: url('/assets/images/page-title.jpg');">
+    <div class="container">
+        <div class="row">
+            <h1>@Model.Name</h1>
+            <div class="page-tab">
+                <a asp-controller="home" asp-action="index">HOME</a>
+                <i class="fas fa-angle-right"></i>
+                <a asp-controller="product" asp-action="index">SHOP</a>
+                <i class="fas fa-angle-right"></i>
+                <span>@Model.Name</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="shop-detail-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 shop-detail-left">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < Model.ProductImages.Count(); i++)
+                        {
+                            <div class="carousel-item @(i==0 ? "active":"")">
+                                <img src="~/uploads/product/@Model.ProductImages[i].Image" class="d-block w-100" alt="...">
+                            </div>
+                        }
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </div>
+            <div class="col-6 shop-detail-right">
+                <h2>@Model.Name</h2>
+                <p class="price">$@Model.SalePrice.00</p>
+                <div class="product-desc">
+                    @Model.Desc
+                </div>
+                <div class="product-quantity-box">
+                    <div class="product-quantity">
+                        <a href="" class="minus">-</a>
+                        <span class="quantity-count">1</span>
+                        <a href="" class="plus">+</a>
+                    </div>
+                    <button class="add-button add-cart">ADD TO CART</button>
+                    <button class="add-button">WISHLIST</button>
+                </div>
+                <hr>
+                <div class="shop-details-box">
+                    <p>Variaty:</p>
+                    <span>@Model.Variaty.Name</span>
+                </div>
+                <div class="shop-details-box">
+                    <p>Type:</p>
+                    <span>@Model.Type.Name</span>
+                </div>
+                <div class="shop-details-box">
+                    <p>Vintage:</p>
+                    <span>@Model.Vintage.Year</span>
+                </div>
+                <div class="shop-details-box">
+                    <p>Region:</p>
+                    <span>@Model.Region.Name</span>
+                </div>
+                <div class="product-rating-box">
+                    <div class="product-rate">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            if (i <= Model.Rate)
+                            {
+                                <i class="fas fa-star"></i>
+
+                            }
+                            else
+                            {
+                                <i class="far fa-star"></i>
+
+                            }
+                        }
+
+                    </div>
+                    <a href="" class="product-review-count">
+                        ( 5 Reviews )
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-reviews">
+    <div class="container">
+        <div class="row">
+            <h2>Customer Reviews</h2>
+
+            <div class="all-users-reviews">
+                <div class="user-review-box">
+                    <div class="user-review">
+                        <div class="product-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p class="user-comment">
+                            This wine is the best
+                        </p>
+                    </div>
+                    <div class="review-detail">
+                        <p>Ulvi Asadzade</p>
+                        <p>|</p>
+                        <p>27.11.2021</p>
+                    </div>
+                </div>
+
+                <div class="user-review-box">
+                    <div class="user-review">
+                        <div class="product-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p class="user-comment">
+                            Not bad
+                        </p>
+                    </div>
+                    <div class="review-detail">
+                        <p>Ismail Abdullazade</p>
+                        <p>|</p>
+                        <p>28.11.2021</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <form class="add-your-review">
+                <h3>Add a review</h3>
+                <h5>Your rating</h5>
+                <div class="your-rate-box">
+                    <a href="">
+                        <i class="fas fa-star"></i>
+                    </a>
+                    <a href="">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </a>
+                    <a href="">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </a>
+                    <a href="">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </a>
+                    <a href="">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </a>
+                </div>
+                <textarea name="" id="" cols="45" rows="8" placeholder="Add your comment..."></textarea>
+                <button type="submit">SEND</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="same-category-product">
+    <div class="container products-box">
+        <h2>YOU MAY ALSO LIKE…</h2>
+        <div class="row">
+            @foreach (var item in sameProducts)
+            {
+                <div class="col-3">
+                    <div class="product-card">
+                        <div class="card-img">
+                            <a asp-controller="product" asp-action="detail" asp-route-id="@item.Id">
+                                <img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster==true)?.Image" alt="">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5>@item.Name</h5>
+                            <div class="product-rate">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= item.Rate)
+                                    {
+                                        <i class="fas fa-star"></i>
+
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-star"></i>
+
+                                    }
+                                }
+                            </div>
+                            <div class="product-price">
+                                <span>$@item.SalePrice.00</span>
+                            </div>
+                        </div>
+                        <div class="product-icons">
+                            <a href="" class="wishlist-button">
+                                <i class="far fa-heart"></i>
+                            </a>
+
+                            <a href="">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+
+                            <a data-bs-toggle="modal" data-bs-target="#productModal" class="show-product-modal" data-id="@item.Id">
+                                <i class="fas fa-expand-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</section>
+
+
+
+@section productDetail
+{
+    <script src="~/assets/js/shop-detail.js"></script>
+
+}
+
