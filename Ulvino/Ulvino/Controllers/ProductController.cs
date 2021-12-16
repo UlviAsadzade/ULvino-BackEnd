@@ -78,7 +78,7 @@ namespace Ulvino.Controllers
 
         public IActionResult Detail(int id)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return RedirectToAction("index", "error", new { area = "manage" });
 
             Product product = _context.Products.Include(x => x.ProductImages).Include(x => x.Variaty).Include(x => x.Type)
                 .Include(x => x.Region).FirstOrDefault(x => x.Id == id);

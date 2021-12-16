@@ -48,10 +48,10 @@
 
                                     <a asp-controller="account" asp-action="logout"><span>Sign out</span></a>
 
-                                 }
+                                }
                                 else
                                 {
-                                    <a data-bs-toggle="modal" data-bs-target="#loginModal">
+                                    <a data-bs-toggle="modal" data-bs-target="#loginModal" class="show-login-modal">
                                         <span>Login</span>
                                     </a>
                                     <a data-bs-toggle="modal" data-bs-target="#registerModal" class="show-register-modal">
@@ -252,29 +252,13 @@
                     <h5 class="modal-title" id="loginModalLabel">Log In</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div class="form-imput-item">
-                            <input type="text" placeholder="Username">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="form-imput-item">
-                            <input type="password" placeholder="Password">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <div class="form-remember-me">
-                            <label for="">
-                                <input type="checkbox" name="" id="">
-                                Remember Me
-                            </label>
-                        </div>
-                        <button type="submit">LOGIN</button>
-                        <a href="" class="forgot-password">Forgot your password?</a>
-                    </form>
+                <div class="modal-body" id="login-modal-detail">
+
+
                 </div>
                 <div class="modal-footer">
                     <p>Not a member?</p>
-                    <a data-bs-toggle="modal" data-bs-target="#registerModal">REGISTER</a>
+                    <a data-bs-toggle="modal" data-bs-target="#registerModal" class="show-register-modal">REGISTER</a>
                 </div>
             </div>
         </div>
@@ -337,7 +321,8 @@
     @RenderSection("blogjs", required: false)
     @RenderSection("productjs", required: false)
     @RenderSection("productDetail", required: false)
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/b26885e958.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

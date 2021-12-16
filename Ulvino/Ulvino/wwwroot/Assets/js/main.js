@@ -145,4 +145,16 @@ $(document).ready(function () {
                 })
     });
 
+
+    $(document).on("click", ".show-login-modal", function (e) {
+        e.preventDefault();
+
+        fetch('https://localhost:44363/account/login')
+            .then(response => response.text())
+            .then(data => {
+                $("#login-modal-detail").html(data)
+
+            })
+    });
+
 })

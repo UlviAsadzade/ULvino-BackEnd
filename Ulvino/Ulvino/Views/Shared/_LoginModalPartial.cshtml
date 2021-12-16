@@ -1,0 +1,23 @@
+﻿@model MemberLoginViewModel
+
+
+<form asp-controller="account" asp-action="Login" asp-area="">
+    <div class="form-imput-item">
+        <input asp-for="UserName" type="text" placeholder="Username">
+        <i class="fas fa-user"></i>
+    </div>
+    <div class="form-imput-item">
+        <input asp-for="Password" type="password" placeholder="Password">
+        <i class="fas fa-lock"></i>
+    </div>
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+    <div class="form-remember-me">
+        <label for="">
+            <input type="checkbox" name="" id="">
+            Remember Me
+        </label>
+    </div>
+    <button type="submit">LOGIN</button>
+    <a href="" class="forgot-password">Forgot your password?</a>
+</form>
