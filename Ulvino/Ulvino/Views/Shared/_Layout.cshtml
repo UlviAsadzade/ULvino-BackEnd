@@ -1,8 +1,12 @@
 ﻿@inject LayoutService service
+@inject UserManager<AppUser> userManager
+
 
 @{
     Setting setting = service.GetSetting();
-    
+    AppUser member = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
+
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -38,15 +42,23 @@
                         <li class="account-box-main ">
                             <div class="my-account-box">
                                 <p>MY ACCOUNT</p>
-                                <!-- <a href="">
-                                        <span>Ulvi Asadzade</span>
-                                    </a> -->
-                                <a data-bs-toggle="modal" data-bs-target="#loginModal">
-                                    <span>Login</span>
-                                </a>
-                                <a data-bs-toggle="modal" data-bs-target="#registerModal">
-                                    <span>Register</span>
-                                </a>
+                                @if (member != null)
+                                {
+                                    <a asp-controller="account" asp-action="profile"><span>@member.FullName</span></a>
+
+                                    <a asp-controller="account" asp-action="logout"><span>Sign out</span></a>
+
+                                 }
+                                else
+                                {
+                                    <a data-bs-toggle="modal" data-bs-target="#loginModal">
+                                        <span>Login</span>
+                                    </a>
+                                    <a data-bs-toggle="modal" data-bs-target="#registerModal" class="show-register-modal">
+                                        <span>Register</span>
+                                    </a>
+
+                                }
                             </div>
                         </li>
 
@@ -276,22 +288,9 @@
                     <h5 class="modal-title create-account" id="registerModalLabel">Create An Account</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form action="">
-                        <div class="form-imput-item">
-                            <input type="text" placeholder="Your username">
-                        </div>
-                        <div class="form-imput-item">
-                            <input type="email" placeholder="Your email">
-                        </div>
-                        <div class="form-imput-item">
-                            <input type="password" placeholder="Password">
-                        </div>
-                        <div class="form-imput-item">
-                            <input type="password" placeholder="Confirm Password">
-                        </div>
-                        <button type="submit">REGISTER</button>
-                    </form>
+                <div class="modal-body" id="register-modal-detail">
+
+
                 </div>
                 <div class="modal-footer">
                     <p>Already a member?</p>

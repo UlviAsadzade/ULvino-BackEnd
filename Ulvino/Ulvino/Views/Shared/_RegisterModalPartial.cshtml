@@ -1,0 +1,23 @@
+﻿@model MemberRegisterViewModel
+
+<form asp-controller="account" asp-action="Register" asp-area="">
+    <div class="form-imput-item">
+        <input asp-for="UserName" type="text" placeholder="Your username">
+    </div>
+    <div class="form-imput-item">
+        <input asp-for="FullName" type="text" placeholder="Your fullname">
+    </div>
+    <div class="form-imput-item">
+        <input asp-for="Email" type="email" placeholder="Your email">
+    </div>
+    <div class="form-imput-item">
+        <input asp-for="Password" type="password" placeholder="Password">
+    </div>
+    <div class="form-imput-item">
+        <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password">
+    </div>
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+    <button type="submit">REGISTER</button>
+</form>
+

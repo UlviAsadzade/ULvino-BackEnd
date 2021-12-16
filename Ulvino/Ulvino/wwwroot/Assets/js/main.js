@@ -133,4 +133,16 @@ $(document).ready(function () {
     });
 
 
+
+    $(document).on("click", ".show-register-modal", function (e) {
+        e.preventDefault();
+
+        fetch('https://localhost:44363/account/register')
+            .then(response => response.text())
+            .then(data => {
+                $("#register-modal-detail").html(data)
+               
+                })
+    });
+
 })

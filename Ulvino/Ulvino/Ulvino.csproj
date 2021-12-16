@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\uploads\about\" />
     <Folder Include="wwwroot\uploads\blog\" />
     <Folder Include="wwwroot\uploads\customer\" />
