@@ -139,7 +139,7 @@
                         <div class="col-3">
                             <div class="product-card">
                                 <div class="card-img">
-                                    <a href="">
+                                    <a asp-controller="product" asp-action="detail" asp-route-id="@item.Id">
                                         <img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster)?.Image" alt="">
                                     </a>
                                 </div>
@@ -169,7 +169,7 @@
                                         <i class="far fa-heart"></i>
                                     </a>
 
-                                    <a href="">
+                                    <a href="" class="add-basket-btn" data-id="@item.Id">
                                         <i class="fas fa-shopping-cart"></i>
                                     </a>
 
@@ -193,7 +193,7 @@
                         <div class="col-3">
                             <div class="product-card">
                                 <div class="card-img">
-                                    <a href="">
+                                    <a asp-controller="product" asp-action="detail" asp-route-id="@item.Id">
                                         <img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster)?.Image" alt="">
                                     </a>
                                 </div>
@@ -223,7 +223,7 @@
                                         <i class="far fa-heart"></i>
                                     </a>
 
-                                    <a href="">
+                                    <a href="" class="add-basket-btn" data-id="@item.Id">
                                         <i class="fas fa-shopping-cart"></i>
                                     </a>
 

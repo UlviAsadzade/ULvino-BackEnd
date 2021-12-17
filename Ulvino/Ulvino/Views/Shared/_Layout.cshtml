@@ -5,7 +5,9 @@
 @{
     Setting setting = service.GetSetting();
     AppUser member = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
-
+    List<BasketItemViewModel> basketItems = service.GetBasketItems();
+    double totalCount = 0;
+    totalCount = basketItems.Sum(x => x.Price * x.Count);
 
 }
 <!DOCTYPE html>
@@ -79,63 +81,13 @@
                             </a>
                             <a href="./cart.html">
                                 <i class="fas fa-shopping-cart"></i>
-                                <span class="icon-count">0</span>
+                                <span class="icon-count">@basketItems.Count()</span>
 
                             </a>
                         </li>
-                        <li class="cart-box ">
-                            <div class="cart-box-main">
-                                <div class="my-cart-box">
-                                    <div class="cart-box-items">
-                                        <div class="cart-box-img">
-                                            <a href="">
-                                                <img src="~/assets/images/wine-1.jpg" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="cart-box-detail">
-                                            <div class="cart-product-name">
-                                                <a href="">
-                                                    Officiis debitis varius risus dignissim
-                                                </a>
-                                                <span>1 × $33.00 </span>
+                        <li class="cart-box show-basket-box ">
+                            @await Html.PartialAsync("_BasketPartial", basketItems)
 
-                                            </div>
-                                            <div class="remove-button">
-                                                <i class="fas fa-minus-circle"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="cart-box-items">
-                                        <div class="cart-box-img">
-                                            <a href="">
-                                                <img src="~/assets/images/wine-2.jpg" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="cart-box-detail">
-                                            <div class="cart-product-name">
-                                                <a href="">
-                                                    <span>Dignissim venenatis tellus ac nulla</span>
-                                                </a>
-                                                <span>1 × $40.00 </span>
-
-                                            </div>
-                                            <div class="remove-button">
-                                                <i class="fas fa-minus-circle"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="cart-subtotal">
-                                    <span class="subtotal-text">subtotal:</span>
-                                    <span class="subtotal-price">$100</span>
-                                </div>
-                                <div class="cart-buttons">
-                                    <a href="./cart.html" class="button view-cart-button">view cart</a>
-                                    <a href="./checkout.html" class="button checkout-button">checkout</a>
-                                </div>
-                            </div>
                         </li>
 
                     </ul>
@@ -320,7 +272,6 @@
     @RenderSection("faqjs", required: false)
     @RenderSection("blogjs", required: false)
     @RenderSection("productjs", required: false)
-    @RenderSection("productDetail", required: false)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/b26885e958.js" crossorigin="anonymous"></script>

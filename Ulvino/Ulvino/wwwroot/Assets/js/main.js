@@ -105,30 +105,8 @@ $(document).ready(function () {
             .then(response => response.text())
             .then(data => {
                 $("#product-modal-detail").html(data)
-
-                var plus = $(".plus")[0];
-                var minus = $(".minus")[0];
-
-                plus.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    sum = plus.previousElementSibling.innerHTML;
-                    sum++;
-                    plus.previousElementSibling.innerHTML = sum;
-                })
-
-                minus.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    sum = minus.nextElementSibling.innerHTML;
-                    if (sum == 1) {
-                        minus.nextElementSibling.innerHTML = 1;
-                    }
-                    else {
-                        sum--;
-                        minus.nextElementSibling.innerHTML = sum;
-                    }
-                })
+                
             });
-
 
     });
 
@@ -155,6 +133,36 @@ $(document).ready(function () {
                 $("#login-modal-detail").html(data)
 
             })
+    });
+
+
+    $(document).on("click", ".add-basket-btn", function (e) {
+        e.preventDefault();
+
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44363/product/addtobasket/' + id)
+            .then(response => response.text())
+            .then(data => {
+                $('.show-basket-box').html(data);
+
+            })
+
+    });
+
+
+    $(document).on("click", ".delete-basket-item", function (e) {
+        e.preventDefault();
+
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44363/product/deletebasketitem/' + id)
+            .then(response => response.text())
+            .then(data => {
+                $('.show-basket-box').html(data);
+
+            })
+
     });
 
 })

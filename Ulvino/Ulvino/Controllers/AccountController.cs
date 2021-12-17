@@ -34,7 +34,7 @@ namespace Ulvino.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterPost(MemberRegisterViewModel registerVM)
         {
-            if (!ModelState.IsValid) return RedirectToAction("index", "error", new { area = "manage" });
+            if (!ModelState.IsValid) return RedirectToAction("index", "error");
 
 
             AppUser member = await _userManager.FindByNameAsync(registerVM.UserName);
@@ -42,7 +42,7 @@ namespace Ulvino.Controllers
             if (member != null)
             {
                 ModelState.AddModelError("UserName", "UserName already taken!");
-                return RedirectToAction("index", "error", new { area = "manage" });
+                return RedirectToAction("index", "error");
 
             }
 
@@ -50,7 +50,7 @@ namespace Ulvino.Controllers
             if (member != null)
             {
                 ModelState.AddModelError("Email", "Email already taken!");
-                return RedirectToAction("index", "error", new { area = "manage" });
+                return RedirectToAction("index", "error");
 
             }
 
@@ -70,7 +70,7 @@ namespace Ulvino.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
 
-                return RedirectToAction("index", "error", new { area = "manage" });
+                return RedirectToAction("index", "error");
 
             }
 
@@ -99,7 +99,7 @@ namespace Ulvino.Controllers
             if (member == null)
             {
                 ModelState.AddModelError("", "username or password incorrect!");
-                return RedirectToAction("index", "error", new { area = "manage" });
+                return RedirectToAction("index", "error");
             }
 
             var result = await _signInManager.PasswordSignInAsync(member, loginVM.Password, true, false);
@@ -107,7 +107,7 @@ namespace Ulvino.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "username or password incorrect!");
-                return RedirectToAction("index", "error", new { area = "manage" });
+                return RedirectToAction("index", "error");
 
             }
 

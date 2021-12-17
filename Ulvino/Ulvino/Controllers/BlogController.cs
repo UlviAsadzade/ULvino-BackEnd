@@ -25,7 +25,7 @@ namespace Ulvino.Controllers
 
         public IActionResult Detail(int id)
         {
-            if (!ModelState.IsValid) return RedirectToAction("index", "error", new { area = "manage" });
+            if (!ModelState.IsValid) return RedirectToAction("index", "error");
 
             Blog blog = _context.Blogs.FirstOrDefault(x => x.Id == id);
 
