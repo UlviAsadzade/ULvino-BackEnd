@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -120,6 +121,76 @@ namespace Ulvino.Controllers
             await _signInManager.SignOutAsync();
 
             return RedirectToAction("index", "home");
+        }
+
+
+        [Authorize(Roles = "Member")]
+        public async Task<IActionResult> Profile()
+        {
+            AppUser member = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            ProfileViewModel profileVM = new ProfileViewModel
+            {
+                Email = member.Email,
+                FullName = member.FullName,
+                PhoneNumber = member.PhoneNumber,
+                UserName = member.UserName,
+                Orders = _context.Orders.Include(x=>x.OrderItems).Where(x => x.AppUserId == member.Id).ToList()
+            };
+
+            return View(profileVM);
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = "Member")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Profile(ProfileViewModel profileVM)
+        {
+            if (!ModelState.IsValid) return View();
+
+            AppUser member = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            if (!string.IsNullOrWhiteSpace(profileVM.ConfirmNewPassword) && !string.IsNullOrWhiteSpace(profileVM.NewPassword))
+            {
+                var passwordChangeResult = await _userManager.ChangePasswordAsync(member, profileVM.CurrentPassword, profileVM.NewPassword);
+
+                if (!passwordChangeResult.Succeeded)
+                {
+                    foreach (var item in passwordChangeResult.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+
+                    return View();
+                }
+
+            }
+
+            if (member.Email != profileVM.Email && _userManager.Users.Any(x => x.NormalizedEmail == profileVM.Email.ToUpper()))
+            {
+                ModelState.AddModelError("Email", "This email has already been taken!");
+                return View();
+            }
+
+            member.FullName = profileVM.FullName;
+            member.Email = profileVM.Email;
+            member.PhoneNumber = profileVM.PhoneNumber;
+
+
+            var result = await _userManager.UpdateAsync(member);
+
+            if (!result.Succeeded)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError("", item.Description);
+                }
+
+                return View();
+            }
+
+            return RedirectToAction("profile");
         }
     }
 }

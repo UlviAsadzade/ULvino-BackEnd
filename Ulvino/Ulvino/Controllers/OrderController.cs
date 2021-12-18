@@ -105,7 +105,7 @@ namespace Ulvino.Controllers
                 Note = checkoutVM.Note,
                 Phone = checkoutVM.Phone,
                 Status = Models.Enums.OrderStatus.Pending,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
                 OrderItems = new List<OrderItem>()
             };
 
@@ -128,7 +128,7 @@ namespace Ulvino.Controllers
 
             foreach (var item in basketItemVMs)
             {
-                Product product = _context.Products.FirstOrDefault(x => x.Id == item.ProductId);
+                Product product = _context.Products.Include(x=>x.ProductImages).FirstOrDefault(x => x.Id == item.ProductId);
 
                 if (product == null)
                 {
@@ -171,6 +171,7 @@ namespace Ulvino.Controllers
                 CostPrice = product.CostPrice,
                 SalePrice = product.SalePrice,
                 Count = count,
+                ProductImage=product.ProductImages.FirstOrDefault(x=>x.IsPoster==true).Image
             };
 
             order.OrderItems.Add(orderItem);

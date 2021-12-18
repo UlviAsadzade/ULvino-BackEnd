@@ -15,6 +15,10 @@ namespace Ulvino.Models
 
         [StringLength(maximumLength: 100)]
         public string ProductName { get; set; }
+
+        [StringLength(maximumLength: 100)]
+        public string ProductImage { get; set; }
+
         public double SalePrice { get; set; }
         public double CostPrice { get; set; }
 
