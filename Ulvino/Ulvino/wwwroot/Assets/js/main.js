@@ -145,6 +145,9 @@ $(document).ready(function () {
             .then(response => response.text())
             .then(data => {
                 $('.show-basket-box').html(data);
+                var hiddenCount = $('.hidden-total-count').attr("data-id");;
+                var basketTotalCount = $('.basket-total-count');
+                basketTotalCount.html(hiddenCount);
 
             })
 
@@ -160,6 +163,9 @@ $(document).ready(function () {
             .then(response => response.text())
             .then(data => {
                 $('.show-basket-box').html(data);
+                var hiddenCount = $('.hidden-total-count').attr("data-id");;
+                var basketTotalCount = $('.basket-total-count');
+                basketTotalCount.html(hiddenCount);
 
             })
 

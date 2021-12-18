@@ -11,6 +11,7 @@
 
 
 <div class="cart-box-main">
+    <div class="hidden-total-count" style="display:none" data-id="@Model.Count()" ></div>
     <div class="my-cart-box">
         @foreach (var item in Model)
         {
@@ -23,7 +24,7 @@
                 <div class="cart-box-detail">
                     <div class="cart-product-name">
                         <a asp-controller="product" asp-action="detail" asp-route-id="@item.ProductId">
-                            @item.Name
+                            @item.Name 
                         </a>
                         <span>@item.Count × $@item.Price.00 </span>
 
@@ -45,6 +46,6 @@
     </div>
     <div class="cart-buttons">
         <a href="./cart.html" class="button view-cart-button">view cart</a>
-        <a href="./checkout.html" class="button checkout-button">checkout</a>
+        <a asp-controller="order" asp-action="checkout" class="button checkout-button">checkout</a>
     </div>
 </div>

@@ -1,0 +1,132 @@
+﻿@model CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+    double totalPrice = 0;
+
+}
+
+
+
+<section class="page-title" style="background-image: url('/assets/images/page-title.jpg');">
+    <div class="container">
+        <div class="row">
+            <h1>CHECKOUT</h1>
+            <div class="page-tab">
+                <a asp-controller="home" asp-action="index">HOME</a>
+                <i class="fas fa-angle-right"></i>
+                <span>CHECKOUT</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="checkout-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 checkout-left">
+                <h2>BILLING DETAILS</h2>
+                <div class="user-detail-box">
+                    <form method="post" id="order-form">
+                        <div class="row">
+                            <div class="col-6 user-form-item">
+                                <label asp-for="FullName">
+                                    Full Name
+                                    <span>*</span>
+                                </label>
+                                <input asp-for="FullName" type="text" placeholder="Full Name">
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-6 user-form-item">
+                                <label asp-for="Email">
+                                    Email
+                                    <span>*</span>
+                                </label>
+                                <input asp-for="Email" type="email" placeholder="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-6 user-form-item">
+                                <label asp-for="Phone">
+                                    Phone Number
+                                    <span>*</span>
+                                </label>
+                                <input type="number" asp-for="Phone" placeholder="Phone number">
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-6 user-form-item">
+                                <label asp-for="City">
+                                    City
+                                    <span>*</span>
+                                </label>
+                                <input type="text" asp-for="City" placeholder="City">
+                                <span asp-validation-for="City" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-12 user-form-item">
+                                <label asp-for="Address">
+                                    Adress
+                                    <span>*</span>
+                                </label>
+                                <input type="text" asp-for="Address" placeholder="Adress">
+                                <span asp-validation-for="Address" class="text-danger"></span>
+
+                            </div>
+
+                        </div>
+                        <div class="order-notes user-form-item">
+                            <label asp-for="Note">Order Notes</label>
+                            <textarea asp-for="Note" cols="30" rows="10" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                            <span asp-validation-for="Note" class="text-danger"></span>
+
+                        </div>
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-6 checkout-right">
+                <h2>YOUR ORDER</h2>
+                <table class="order-detail-box">
+                    <thead>
+                        <tr>
+                            <th class="product-name">Product</th>
+                            <th class="product-total">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.BasketItemViewModels)
+                        {
+                            double price = item.Count * item.Price;
+                            totalPrice += price;
+                            <tr class="order-product">
+                                <td class="product-name">@item.Name  × @item.Count</td>
+                                <td class="product-price product-total">$@price.00</td>
+                            </tr>
+
+                        }
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr class="order-total">
+                            <th class="product-name">Total</th>
+                            <td class="product-total product-price">$@totalPrice.00</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+                <div class="order-buy">
+                    <button type="submit" form="order-form">BUY</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

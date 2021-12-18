@@ -56,6 +56,9 @@ namespace Ulvino.Models
         [NotMapped]
         public List<int> ProductImageIds { get; set; } = new List<int>();
 
+        public List<OrderItem> OrderItems { get; set; }
+
+
 
     }
 }
