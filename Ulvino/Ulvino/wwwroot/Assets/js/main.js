@@ -145,12 +145,22 @@ $(document).ready(function () {
             .then(response => response.text())
             .then(data => {
                 $('.show-basket-box').html(data);
-                var hiddenCount = $('.hidden-total-count').attr("data-id");;
+                var hiddenCount = $('.hidden-total-count').attr("data-id");
                 var basketTotalCount = $('.basket-total-count');
                 basketTotalCount.html(hiddenCount);
 
             })
 
+    });
+
+    $(document).on("click", ".add-wishlist-btn", function (e) {
+        e.preventDefault();
+
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44363/product/AddToWishlist/' + id)
+            .then(response => response.text())
+        
     });
 
 
@@ -170,5 +180,35 @@ $(document).ready(function () {
             })
 
     });
+
+    $(document).on("click", ".delete-wishlist-item", function (e) {
+        e.preventDefault();
+
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44363/product/deletewishlistitem/' + id)
+            .then(response => response.text())
+            
+
+    });
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
 
 })

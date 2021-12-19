@@ -8,17 +8,29 @@
 
 @section profileStyles{
     <style>
-        
+
         .hiddenRow {
             padding: 0 !important;
         }
 
-        .fa-clipboard-list{
-            cursor:pointer
+        .fa-clipboard-list {
+            cursor: pointer
         }
     </style>
 }
 
+@if (TempData["Success"] != null)
+{
+    if ((bool)TempData["Success"] == true)
+    {
+        <input type="hidden" id="success" />
+    }
+    else
+    {
+        <input type="hidden" id="error" />
+
+    }
+}
 
 <section class="page-title" style="background-image: url('/assets/images/page-title.jpg');">
     <div class="container">
@@ -143,108 +155,82 @@
                              aria-labelledby="v-pills-profile-tab">
 
                             <table class="table">
-                                    <thead class="text-center">
-                                        <tr>
-                                            @*<th scope="col">#</th>
-                                            <th scope="col" colspan="2" class="product-detail-head">Product</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Price</th>*@
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Details</th>
+                                        <th>Total count</th>
+                                        <th>Total Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
 
-                                            <th>#</th>
-                                            <th>Details</th>
-                                            <th>Total count</th>
-                                            <th>Total Amount</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center align-middle">
+                                    @foreach (var order in Model.Orders)
+                                    {
+                                        index++;
+                                        orderItemIndex = 0;
 
+                                        <tr class="accordion-header collapsed" id="heading-@index" data-bs-toggle="collapse" data-bs-target="#collapse-@index" aria-expanded="false" aria-controls="collapse-@index">
+                                            <td>@index</td>
+                                            <td><i class="fas fa-clipboard-list mt-4"></i></td>
+                                            <td>@order.OrderItems.Count()</td>
+                                            <td class="table-price">$@order.TotalAmount.00</td>
+                                            <td>@order.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
+                                            <td>
+                                                @if (order.Status == Ulvino.Models.Enums.OrderStatus.Accepted)
+                                                {
+                                                    <h5><span class="badge bg-success">Accepted</span></h5>
+                                                }
+                                                else if (order.Status == Ulvino.Models.Enums.OrderStatus.Rejected)
+                                                {
+                                                    <h5><span class="badge bg-danger">Rejected</span></h5>
+                                                }
+                                                else
+                                                {
+                                                    <h5><span class="badge bg-info">Pending</span></h5>
+                                                }
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody class="text-center align-middle">
-                                        @foreach (var order in Model.Orders)
-                                        {
-                                            index++;
-                                            orderItemIndex = 0;
+                                        <tr>
+                                            <td colspan="12" class="hiddenRow">
+                                                <div id="collapse-@index" class=" accordion-collapse collapse" aria-labelledby="heading-@index">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr class="info">
+                                                                <th>#</th>
+                                                                <th>Product Image</th>
+                                                                <th>Product Name</th>
+                                                                <th>Count</th>
+                                                                <th>Price</th>
+                                                            </tr>
+                                                        </thead>
 
-                                            <tr class="accordion-header collapsed" id="heading-@index" data-bs-toggle="collapse" data-bs-target="#collapse-@index" aria-expanded="true" aria-controls="collapse-@index">
-                                                <td>@index</td>
-                                                <td ><i class="fas fa-clipboard-list mt-4"></i></td>
-                                                <td>@order.OrderItems.Count()</td>
-                                                <td class="table-price">$@order.TotalAmount.00</td>
-                                                <td>@order.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
-                                                <td>
-                                                    @if (order.Status == Ulvino.Models.Enums.OrderStatus.Accepted)
-                                                    {
-                                                        <h5><span class="badge bg-success">Accepted</span></h5>
-                                                    }
-                                                    else if (order.Status == Ulvino.Models.Enums.OrderStatus.Rejected)
-                                                    {
-                                                        <h5><span class="badge bg-danger">Rejected</span></h5>
-                                                    }
-                                                    else
-                                                    {
-                                                        <h5><span class="badge bg-info">Pending</span></h5>
-                                                    }
-                                                </td>
-                                            </tr>
-                                            <tr >
-                                                <td colspan="12" class="hiddenRow">
-                                                    <div id="collapse-@index" class="accordion-body accordion-collapse collapse" aria-labelledby="heading-@index">
-                                                        <table class="table table-bordered">
-                                                            <thead>
-                                                                <tr class="info">
-                                                                    <th>#</th>
-                                                                    <th>Product Image</th>
-                                                                    <th>Product Name</th>
-                                                                    <th>Count</th>
-                                                                    <th>Price</th>
+                                                        <tbody style="border-top-width:1px;">
+                                                            @foreach (var orderItem in order.OrderItems)
+                                                            {
+                                                                orderItemIndex++;
+                                                                <tr>
+                                                                    <td>@orderItemIndex</td>
+                                                                    <td>
+                                                                        <img src="~/uploads/product/@orderItem.ProductImage" alt="">
+                                                                    </td>
+                                                                    <td>@orderItem.ProductName</td>
+                                                                    <td>@orderItem.Count</td>
+                                                                    <td class="table-price">$@orderItem.SalePrice.00</td>
                                                                 </tr>
-                                                            </thead>
+                                                            }
 
-                                                            <tbody style="border-top-width:1px;">
-                                                                @foreach (var orderItem in order.OrderItems)
-                                                                {
-                                                                    orderItemIndex++;
-                                                                    <tr>
-                                                                        <td>@orderItemIndex</td>
-                                                                        <td>
-                                                                            <img src="~/uploads/product/@orderItem.ProductImage" alt="">
-                                                                        </td>
-                                                                        <td>@orderItem.ProductName</td>
-                                                                        <td>@orderItem.Count</td>
-                                                                        <td class="table-price">$@orderItem.SalePrice.00</td>
-                                                                    </tr>
-                                                                }
+                                                        </tbody>
+                                                    </table>
 
-                                                            </tbody>
-                                                        </table>
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        }
-                                        @*<tr>
-                                            <th scope="row">1</th>
-                                            <td>
-                                                <img src="./assets/images/wine-1.jpg" alt="">
+                                                </div>
                                             </td>
-                                            <td>Convallis Quam Sit Vitae Sodales x 1</td>
-                                            <td>26.11.2021</td>
-                                            <td><span class="badge bg-info">Pending</span></td>
-                                            <td class="table-price">$40.00</td>
                                         </tr>
-
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>
-                                                <img src="./assets/images/wine-2.jpg" alt="">
-                                            </td>
-                                            <td>Condimentum Posuere Consectetur Urna x 2</td>
-                                            <td>27.11.2021</td>
-                                            <td><span class="badge bg-success">Accepted</span></td>
-                                            <td class="table-price">$60.00</td>
-                                        </tr>*@
-                                    </tbody>
+                                    }
+                                   
+                                </tbody>
                             </table>
 
                         </div>
@@ -257,4 +243,15 @@
 </section>
 
 
-
+@section profilejs{
+    <script>
+        $(document).ready(function () {
+            if ($("#success").length) {
+                toastr["success"]("Your info has been changed successfully!", "Congratulations")
+            }
+            else if ($("#error").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+}

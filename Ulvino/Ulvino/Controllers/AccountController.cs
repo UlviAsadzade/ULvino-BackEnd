@@ -147,6 +147,8 @@ namespace Ulvino.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Profile(ProfileViewModel profileVM)
         {
+            TempData["Success"] = false;
+
             if (!ModelState.IsValid) return View();
 
             AppUser member = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -189,6 +191,8 @@ namespace Ulvino.Controllers
 
                 return View();
             }
+
+            TempData["Success"] = true;
 
             return RedirectToAction("profile");
         }

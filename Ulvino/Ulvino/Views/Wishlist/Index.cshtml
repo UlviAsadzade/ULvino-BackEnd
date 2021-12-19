@@ -1,0 +1,80 @@
+﻿@model List<WishlistItemViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<section class="page-title" style="background-image: url('./assets/images/page-title.jpg');">
+    <div class="container">
+        <div class="row">
+            <h1>WISHLIST</h1>
+            <div class="page-tab">
+                <a asp-controller="home" asp-action="index">HOME</a>
+                <i class="fas fa-angle-right"></i>
+                <span>WISHLIST</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="wishlist-main">
+    <div class="container">
+        <div class="row wishlist-page-box" >
+            <div class="container">
+                <div class="hidden-wishlist-count" style="display:none" data-id="@Model.Count()"></div>
+
+                @foreach (var item in Model)
+                {
+                    <div class=" row wishlist-page-box-item" id="1">
+                        <div class="col-1">
+                            <div class="wishlist-page-img">
+                                <a href="">
+                                    <img src="~/uploads/product/@item.Image" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <a href="" class="wishlist-page-product-name">
+                                @item.Name
+                            </a>
+                        </div>
+                        <div class="col-2">
+                            <p class="wishlist-page-product-price"><span>$</span> <span>@item.Price.00</span></p>
+                        </div>
+
+                        <div class="col-2">
+                            <a href="" class="button add-basket-btn " data-id="@item.ProductId">Add to Cart</a>
+                        </div>
+                        <div class="col-1">
+                            <a href="" class="remove-product-icon delete-wishlist-item" data-id="@item.ProductId"  data-target="1">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                }
+
+                <div class="wishlist-page-box-bottom">
+                    <a asp-controller="product" asp-action="index" class="button ">Continue Shopping</a>
+                    <a href="./cart.html" class="button ">Go Cart</a>
+                </div>
+
+                <div class="wishlist-empty-box">
+                    <h2>Your Wishlist is Empty</h2>
+                    <a  asp-controller="product" asp-action="index" class="button ">Go Shop</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@section wishlistjs
+{
+    <script src="~/assets/js/wishlist.js"></script>
+}
+

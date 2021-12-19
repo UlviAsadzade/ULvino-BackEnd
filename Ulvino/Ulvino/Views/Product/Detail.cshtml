@@ -56,7 +56,7 @@
                 </div>
                 <div class="product-quantity-box">
                     <button class="add-button add-cart add-basket-btn" data-id="@Model.Id">ADD TO CART</button>
-                    <button class="add-button">WISHLIST</button>
+                    <button class="add-button add-wishlist-btn" data-id="@Model.Id">WISHLIST</button>
                 </div>
                 <hr>
                 <div class="shop-details-box">
@@ -221,7 +221,7 @@
                             </div>
                         </div>
                         <div class="product-icons">
-                            <a href="" class="wishlist-button">
+                            <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
                                 <i class="far fa-heart"></i>
                             </a>
 
