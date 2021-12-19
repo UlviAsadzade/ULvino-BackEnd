@@ -1,0 +1,83 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "Index";
+    int order = 0;
+
+}
+
+
+
+
+<div class="page-content fade-in-up">
+    <div class="ibox ">
+        <div class="ibox-head p-5">
+            <h1>Orders</h1>
+        </div>
+        <div class="ibox-body">
+            <table class="table bg-ebony-800 text-white table-bordered " id="example-table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">FullName</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Total Amount</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Edit</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        order++;
+                    <tr>
+
+                        <td class="align-middle text-center">@order</td>
+                        <td class="align-middle text-center">@item.FullName</td>
+                        <td class="align-middle text-center">@item.Email</td>
+                        <td class="align-middle text-center">$@item.TotalAmount.00</td>
+                        <td class="align-middle text-center">@item.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
+                        <td class="align-middle text-center">
+                            <h4>
+                                <span class="font-14 p-2 badge badge-@(item.Status == OrderStatus.Accepted?"success":item.Status == OrderStatus.Rejected?"danger":"info")">
+                                    @(item.Status== OrderStatus.Accepted?"accepted":item.Status == OrderStatus.Rejected?"rejected":"pending")
+                                </span>
+                            </h4>
+                        </td>
+                        <td class="align-middle text-center">
+                            <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-rounded">Edit</a>
+                        </td>
+
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section tablejs
+{
+    <script type="text/javascript">
+        $(function() {
+                    $('#example-table').DataTable({
+                        pageLength: 10,
+                        //"ajax": '~/manage/demo/data/table_data.json',
+                        /*"columns": [
+                            { "data": "name" },
+                            { "data": "office" },
+                            { "data": "extn" },
+                            { "data": "start_date" },
+                            { "data": "salary" }
+                        ]*/
+                    });
+     })</script>
+
+    <script src="~/manage/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
+}
+

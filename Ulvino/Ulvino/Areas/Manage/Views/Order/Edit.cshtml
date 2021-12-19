@@ -1,0 +1,55 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-3 text-warning text-center">Edit</h1>
+    <div class="card bg-ebony-800 text-white" style="width: 50%; margin:0 auto;">
+        <div class="card-body text-center">
+            <p class="card-text font-18">
+                Full Name - @Model.FullName
+            </p>
+            <p class="card-text font-18">
+                Email - @Model.Email
+            </p>
+            <p class="card-text font-18">
+                Phone number - @Model.Phone
+            </p>
+            <p class="card-text font-18">
+                Total Amount - $@Model.TotalAmount.00
+            </p>
+            <p class="card-text font-18">
+                City - @Model.City
+            </p>
+            <p class="card-text font-18">
+                Address - @Model.Address
+            </p>
+            
+            <p class="card-text font-18">
+                Date - @Model.CreatedAt.ToString("dd MMM yyyy HH:mm")
+            </p>
+            <p class="card-text font-18">
+                Note - @Model.Note
+            </p>
+            <p class="card-text font-18">
+                Status - @Model.Status
+            </p>
+        </div>
+        <hr class="bg-white w-100" />
+        <h3 class="text-center">Order Items</h3>
+        <ul class="list-group list-group-flush text-center">
+            @foreach (var orderItem in Model.OrderItems)
+            {
+                <li class="font-16 list-group-item">@orderItem.ProductName  @orderItem.Count x $@orderItem.SalePrice.00</li>
+            }
+        </ul>
+        <div class="card-body text-center">
+            <a asp-action="accept" asp-route-id="@Model.Id" class="font-18 btn btn-success">Accept</a>
+            <a asp-action="reject" asp-route-id="@Model.Id" class="font-18 btn btn-danger">Reject</a>
+        </div>
+    </div>
+</div>
+
+
