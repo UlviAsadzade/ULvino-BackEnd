@@ -86,6 +86,11 @@ namespace Ulvino.Controllers
             Product product = _context.Products.Include(x => x.ProductImages).Include(x => x.Variaty).Include(x => x.Type)
                 .Include(x => x.Region).FirstOrDefault(x => x.Id == id);
 
+            if (product == null)
+            {
+                return RedirectToAction("index", "error");
+            }
+
             ViewBag.SameProducts = _context.Products.Include(x => x.ProductImages).Where(x => x.Rate > 4).Take(4).ToList();
 
             return View(product);
