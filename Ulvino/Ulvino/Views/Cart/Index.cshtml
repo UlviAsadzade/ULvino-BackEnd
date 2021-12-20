@@ -32,13 +32,13 @@
                         <div class=" row cart-page-box-item" id="1">
                             <div class="col-1">
                                 <div class="cart-page-img">
-                                    <a href="">
+                                    <a asp-controller="product" asp-action="detail" asp-route-id="@item.ProductId">
                                         <img src="~/uploads/product/@item.Image" alt="">
                                     </a>
                                 </div>
                             </div>
                             <div class="col-4">
-                                <a href="" class="cart-page-product-name">
+                                <a asp-controller="product" asp-action="detail" asp-route-id="@item.ProductId" class="cart-page-product-name">
                                     @item.Name
                                 </a>
                             </div>
@@ -47,9 +47,9 @@
                             </div>
                             <div class="col-2">
                                 <div class="cart-page-quantity">
-                                    <a href="" class="minus delete-cart-item" data-id="@item.ProductId">-</a>
+                                    <a href="" id="delete-button" class="minus" data-content="@item.Count" data-id="@item.ProductId">-</a>
                                     <span class="quantity-count">@item.Count</span>
-                                    <a href="" class="plus add-cart-btn" data-id="@item.ProductId">+</a>
+                                    <a href="" class="plus add-basket-btn" data-id="@item.ProductId">+</a>
                                 </div>
                             </div>
                             <div class="col-2">

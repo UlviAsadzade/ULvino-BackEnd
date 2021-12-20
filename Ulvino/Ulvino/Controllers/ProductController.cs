@@ -180,7 +180,9 @@ namespace Ulvino.Controllers
         public IActionResult DeleteBasketItem(int id)
         {
             Product product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
+
             BasketItemViewModel basketItem = null;
+
             if (product == null) return RedirectToAction("index", "error");
 
             AppUser member = null;
@@ -205,7 +207,7 @@ namespace Ulvino.Controllers
                 if (basketItem.Count == 1)
                 {
 
-                    products.Remove(basketItem);
+                    basketItem.Count = 1;
                 }
                 else
                 {
@@ -222,12 +224,69 @@ namespace Ulvino.Controllers
                 if (memberBasketItem.Count == 1)
                 {
 
-                    _context.BasketItems.Remove(memberBasketItem);
+                    memberBasketItem.Count = 1;
                 }
                 else
                 {
                     memberBasketItem.Count--;
                 }
+
+                _context.SaveChanges();
+
+                products = _context.BasketItems.Include(x => x.Product).ThenInclude(pi => pi.ProductImages).Where(x => x.AppUserId == member.Id)
+                    .Select(x => new BasketItemViewModel
+                    {
+                        ProductId = x.ProductId,
+                        Count = x.Count,
+                        Name = x.Product.Name,
+                        Price = x.Product.SalePrice,
+                        Image = x.Product.ProductImages.FirstOrDefault(b => b.IsPoster == true).Image
+                    })
+                    .ToList();
+
+            }
+            return PartialView("_BasketPartial", products);
+        }
+
+        public IActionResult RemoveBasketItem(int id)
+        {
+            Product product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
+
+            BasketItemViewModel basketItem = null;
+
+            if (product == null) return RedirectToAction("index", "error");
+
+            AppUser member = null;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+
+            }
+
+            List<BasketItemViewModel> products = new List<BasketItemViewModel>();
+
+            if (member == null)
+            {
+
+                string productStr = HttpContext.Request.Cookies["Products"];
+                products = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(productStr);
+
+                basketItem = products.FirstOrDefault(x => x.ProductId == id);
+
+
+                products.Remove(basketItem);
+
+                productStr = JsonConvert.SerializeObject(products);
+
+                HttpContext.Response.Cookies.Append("Products", productStr);
+            }
+
+            else
+            {
+                BasketItem memberBasketItem = _context.BasketItems.Include(x => x.Product).FirstOrDefault(x => x.AppUserId == member.Id && x.ProductId == id);
+
+                _context.BasketItems.Remove(memberBasketItem);
 
                 _context.SaveChanges();
 

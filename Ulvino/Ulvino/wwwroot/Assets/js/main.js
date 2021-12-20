@@ -152,18 +152,7 @@ $(document).ready(function () {
             })
 
     });
-
-    $(document).on("click", ".add-cart-btn", function (e) {
-        e.preventDefault();
-
-        var id = $(this).attr("data-id");
-
-        fetch('https://localhost:44363/cart/addtocart/' + id)
-            .then(response => response.text())
-            
-            
-
-    });
+    
 
     $(document).on("click", ".add-wishlist-btn", function (e) {
         e.preventDefault();
@@ -176,43 +165,67 @@ $(document).ready(function () {
     });
 
 
-    $(document).on("click", ".delete-basket-item", function (e) {
+    $(document).on("click", "#remove-button", function (e) {
         e.preventDefault();
 
         var id = $(this).attr("data-id");
-
-        fetch('https://localhost:44363/product/deletebasketitem/' + id)
-            .then(response => response.text())
-            .then(data => {
-                $('.show-basket-box').html(data);
-                var hiddenCount = $('.hidden-total-count').attr("data-id");;
-                var basketTotalCount = $('.basket-total-count');
-                basketTotalCount.html(hiddenCount);
-
-            })
-
+        var content = $(this).attr("data-content");
+        if (content > 1)
+        {
+            fetch('https://localhost:44363/product/deletebasketitem/' + id)
+                .then(response => response.text())
+                .then(data => {
+                    $('.show-basket-box').html(data);
+                    var hiddenCount = $('.hidden-total-count').attr("data-id");;
+                    var basketTotalCount = $('.basket-total-count');
+                    basketTotalCount.html(hiddenCount);
+                })
+        }
+        else
+        {
+            fetch('https://localhost:44363/product/removebasketitem/' + id)
+                .then(response => response.text())
+                .then(data => {
+                    $('.show-basket-box').html(data);
+                    var hiddenCount = $('.hidden-total-count').attr("data-id");;
+                    var basketTotalCount = $('.basket-total-count');
+                    basketTotalCount.html(hiddenCount);
+                })
+        }
     });
 
-    $(document).on("click", ".delete-cart-item", function (e) {
+    $(document).on("click", "#delete-button", function (e) {
         e.preventDefault();
 
         var id = $(this).attr("data-id");
-
-        fetch('https://localhost:44363/cart/deletecartitem/' + id)
-            .then(response => response.text())
-            
-
+        var content = $(this).attr("data-content");
+        if (content > 1) {
+            fetch('https://localhost:44363/product/deletebasketitem/' + id)
+                .then(response => response.text())
+                .then(data => {
+                    $('.show-basket-box').html(data);
+                    var hiddenCount = $('.hidden-total-count').attr("data-id");;
+                    var basketTotalCount = $('.basket-total-count');
+                    basketTotalCount.html(hiddenCount);
+                })
+        }
+        
     });
+
 
     $(document).on("click", ".remove-cart-item", function (e) {
         e.preventDefault();
 
         var id = $(this).attr("data-id");
 
-        fetch('https://localhost:44363/cart/removecartitem/' + id)
+        fetch('https://localhost:44363/product/removebasketitem/' + id)
             .then(response => response.text())
-
-
+            .then(data => {
+                $('.show-basket-box').html(data);
+                var hiddenCount = $('.hidden-total-count').attr("data-id");;
+                var basketTotalCount = $('.basket-total-count');
+                basketTotalCount.html(hiddenCount);
+            })
     });
 
     $(document).on("click", ".delete-wishlist-item", function (e) {
