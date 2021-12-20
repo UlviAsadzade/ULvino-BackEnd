@@ -153,6 +153,18 @@ $(document).ready(function () {
 
     });
 
+    $(document).on("click", ".add-cart-btn", function (e) {
+        e.preventDefault();
+
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44363/cart/addtocart/' + id)
+            .then(response => response.text())
+            
+            
+
+    });
+
     $(document).on("click", ".add-wishlist-btn", function (e) {
         e.preventDefault();
 
@@ -178,6 +190,28 @@ $(document).ready(function () {
                 basketTotalCount.html(hiddenCount);
 
             })
+
+    });
+
+    $(document).on("click", ".delete-cart-item", function (e) {
+        e.preventDefault();
+
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44363/cart/deletecartitem/' + id)
+            .then(response => response.text())
+            
+
+    });
+
+    $(document).on("click", ".remove-cart-item", function (e) {
+        e.preventDefault();
+
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44363/cart/removecartitem/' + id)
+            .then(response => response.text())
+
 
     });
 

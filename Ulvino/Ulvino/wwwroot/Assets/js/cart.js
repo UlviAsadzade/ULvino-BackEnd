@@ -33,7 +33,6 @@ removeButtons.forEach(removeButton => {
             cartBoxBottom.remove();
             cartEmptyBox.classList.add("active")
         }
-        console.log(totalAmount.lastElementChild.innerHTML);
 
     }
 });
@@ -55,7 +54,6 @@ minus.forEach(x => {
         prdSubtotal = (sum * prdPrice).toFixed(2);
         x.parentElement.parentElement.nextElementSibling.firstElementChild.lastElementChild.innerHTML = prdSubtotal;
         sumOfSubtotals(subtotals);
-        console.log(prdtotal);
         totalAmount.lastElementChild.innerHTML = prdtotal.toFixed(2);
         prdtotal = 0
     }

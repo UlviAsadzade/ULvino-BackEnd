@@ -45,7 +45,7 @@
         <span class="subtotal-price">$@totalCount.00</span>
     </div>
     <div class="cart-buttons">
-        <a href="./cart.html" class="button view-cart-button">view cart</a>
+        <a asp-controller="cart" asp-action="index" class="button view-cart-button">view cart</a>
         <a asp-controller="order" asp-action="checkout" class="button checkout-button">checkout</a>
     </div>
 </div>

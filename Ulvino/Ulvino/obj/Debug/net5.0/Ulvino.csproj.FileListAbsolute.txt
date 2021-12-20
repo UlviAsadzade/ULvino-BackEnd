@@ -210,3 +210,4 @@ C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Wishlist\Index.cshtml.g.cs
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Order\Index.cshtml.g.cs
 C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Areas\Manage\Views\Order\Edit.cshtml.g.cs
+C:\Users\lenovo\OneDrive\Masaüstü\ULvino-BackEnd\Ulvino\Ulvino\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs

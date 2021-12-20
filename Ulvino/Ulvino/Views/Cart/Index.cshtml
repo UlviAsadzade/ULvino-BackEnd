@@ -1,0 +1,94 @@
+﻿@model List<BasketItemViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    double totalPrice = 0;
+
+}
+
+
+
+    <section class="page-title" style="background-image: url('./assets/images/page-title.jpg');">
+        <div class="container">
+            <div class="row">
+                <h1>CART</h1>
+                <div class="page-tab">
+                    <a asp-controller="home" asp-action="index">HOME</a>
+                    <i class="fas fa-angle-right"></i>
+                    <span>CART</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cart-main">
+        <div class="container">
+            <div class="row cart-page-box">
+                <div class="container">
+                    @foreach (var item in Model)
+                    {
+                        double price = item.Count * item.Price;
+                        totalPrice += price;
+                        <div class=" row cart-page-box-item" id="1">
+                            <div class="col-1">
+                                <div class="cart-page-img">
+                                    <a href="">
+                                        <img src="~/uploads/product/@item.Image" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <a href="" class="cart-page-product-name">
+                                    @item.Name
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <p class="cart-page-product-price"><span>$</span> <span>@item.Price.00</span></p>
+                            </div>
+                            <div class="col-2">
+                                <div class="cart-page-quantity">
+                                    <a href="" class="minus delete-cart-item" data-id="@item.ProductId">-</a>
+                                    <span class="quantity-count">@item.Count</span>
+                                    <a href="" class="plus add-cart-btn" data-id="@item.ProductId">+</a>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <p class="cart-page-product-price subtotal"> <span>$</span> <span>@price.00</span></p>
+                            </div>
+                            <div class="col-1">
+                                <a href="" class="remove-product-icon remove-cart-item" data-id="@item.ProductId" data-target="1">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    }
+
+                    <div class="cart-page-box-bottom">
+                        <a asp-controller="product" asp-action="index" class="button ">Continue Shopping</a>
+                        <a asp-controller="order" asp-action="checkout" class="button ">Go Checkouts</a>
+                        <div class=" cart-total-amount">
+                            <p>Total:</p>
+                            <span class="total-amount"><span>$</span> <span>@totalPrice.00</span></span>
+                        </div>
+                    </div>
+
+                    <div class="cart-empty-box">
+                        <h2>Your Cart is Empty</h2>
+                        <a asp-controller="product" asp-action="index" class="button ">Go Shop</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+@section cartjs
+{
+    <script src="~/assets/js/cart.js"></script>
+}

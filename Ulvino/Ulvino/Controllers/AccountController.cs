@@ -149,7 +149,7 @@ namespace Ulvino.Controllers
         {
             TempData["Success"] = false;
 
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return RedirectToAction("profile");
 
             AppUser member = await _userManager.FindByNameAsync(User.Identity.Name);
 
@@ -164,7 +164,7 @@ namespace Ulvino.Controllers
                         ModelState.AddModelError("", item.Description);
                     }
 
-                    return View();
+                    return RedirectToAction("profile");
                 }
 
             }
@@ -172,7 +172,8 @@ namespace Ulvino.Controllers
             if (member.Email != profileVM.Email && _userManager.Users.Any(x => x.NormalizedEmail == profileVM.Email.ToUpper()))
             {
                 ModelState.AddModelError("Email", "This email has already been taken!");
-                return View();
+
+                return RedirectToAction("profile");
             }
 
             member.FullName = profileVM.FullName;
@@ -189,7 +190,7 @@ namespace Ulvino.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
 
-                return View();
+                return RedirectToAction("profile");
             }
 
             TempData["Success"] = true;

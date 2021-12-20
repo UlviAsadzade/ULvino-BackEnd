@@ -76,7 +76,6 @@ namespace Ulvino.Controllers
 
             ViewBag.SelectedPage = page;
             ViewBag.TotalPage = Math.Ceiling(query.Count() / 9m);
-
             return View(productVM);
         }
 
