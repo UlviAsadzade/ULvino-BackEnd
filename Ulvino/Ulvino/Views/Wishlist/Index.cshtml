@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row wishlist-page-box" >
             <div class="container">
-                <div class="hidden-wishlist-count" style="display:none" data-id="@Model.Count()"></div>
+                <input class="hidden-wishlist-count" hidden value="@Model.Count()">
 
                 @foreach (var item in Model)
                 {

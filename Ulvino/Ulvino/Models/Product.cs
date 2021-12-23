@@ -58,6 +58,9 @@ namespace Ulvino.Models
 
         public List<OrderItem> OrderItems { get; set; }
 
+        public List<Review> Reviews { get; set; }
+
+
 
 
     }

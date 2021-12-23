@@ -110,6 +110,7 @@ $(document).ready(function () {
 
     });
 
+    ///////////////////////////////////////////////////////////////
 
 
     $(document).on("click", ".show-register-modal", function (e) {
@@ -123,6 +124,8 @@ $(document).ready(function () {
                 })
     });
 
+    ///////////////////////////////////////////////////////////////
+
 
     $(document).on("click", ".show-login-modal", function (e) {
         e.preventDefault();
@@ -134,6 +137,8 @@ $(document).ready(function () {
 
             })
     });
+
+    ///////////////////////////////////////////////////////////////
 
 
     $(document).on("click", ".add-basket-btn", function (e) {
@@ -152,7 +157,9 @@ $(document).ready(function () {
             })
 
     });
-    
+
+    ///////////////////////////////////////////////////////////////
+
 
     $(document).on("click", ".add-wishlist-btn", function (e) {
         e.preventDefault();
@@ -162,7 +169,12 @@ $(document).ready(function () {
         fetch('https://localhost:44363/product/AddToWishlist/' + id)
             .then(response => response.text())
         
+        var nese = $('.hidden-wishlist-count');
+        console.log(nese);
+        
     });
+
+    ///////////////////////////////////////////////////////////////
 
 
     $(document).on("click", "#remove-button", function (e) {
@@ -194,6 +206,8 @@ $(document).ready(function () {
         }
     });
 
+    ///////////////////////////////////////////////////////////////
+
     $(document).on("click", "#delete-button", function (e) {
         e.preventDefault();
 
@@ -212,6 +226,8 @@ $(document).ready(function () {
         
     });
 
+    ///////////////////////////////////////////////////////////////
+
 
     $(document).on("click", ".remove-cart-item", function (e) {
         e.preventDefault();
@@ -228,6 +244,9 @@ $(document).ready(function () {
             })
     });
 
+    ///////////////////////////////////////////////////////////////
+
+
     $(document).on("click", ".delete-wishlist-item", function (e) {
         e.preventDefault();
 
@@ -238,6 +257,10 @@ $(document).ready(function () {
             
 
     });
+
+
+    ///////////////////////////////////////////////////////////////
+
 
     toastr.options = {
         "closeButton": false,
@@ -257,5 +280,17 @@ $(document).ready(function () {
         "hideMethod": "fadeOut"
     }
 
+    ///////////////////////////////////////////////////////////////
+
+    let ranks = document.querySelectorAll('.comment-rank');
+
+    ranks.forEach(function (elem, index) {
+        elem.addEventListener('click', function () {
+            document.querySelector('#rate').value = index + 1;
+            for (let i = 0; i <= index; i++) {
+                ranks[i].style.color = '#f9bf00';
+            }
+        })
+    })
 
 })

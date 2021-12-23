@@ -1,9 +1,12 @@
-﻿@model Product
+﻿@model ReviewViewModel
+@inject UserManager<AppUser> userManager
 
 @{
     ViewData["Title"] = "Detail";
     List<Product> sameProducts = ViewBag.SameProducts;
     List<WishlistItemViewModel> wishlists = ViewBag.Wishlists;
+    AppUser member = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
+
 
 }
 
@@ -11,13 +14,13 @@
 <section class="page-title" style="background-image: url('/assets/images/page-title.jpg');">
     <div class="container">
         <div class="row">
-            <h1>@Model.Name</h1>
+            <h1>@Model.Product.Name</h1>
             <div class="page-tab">
                 <a asp-controller="home" asp-action="index">HOME</a>
                 <i class="fas fa-angle-right"></i>
                 <a asp-controller="product" asp-action="index">SHOP</a>
                 <i class="fas fa-angle-right"></i>
-                <span>@Model.Name</span>
+                <span>@Model.Product.Name</span>
             </div>
         </div>
     </div>
@@ -29,10 +32,10 @@
             <div class="col-6 shop-detail-left">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        @for (int i = 0; i < Model.ProductImages.Count(); i++)
+                        @for (int i = 0; i < Model.Product.ProductImages.Count(); i++)
                         {
                             <div class="carousel-item @(i==0 ? "active":"")">
-                                <img src="~/uploads/product/@Model.ProductImages[i].Image" class="d-block w-100" alt="...">
+                                <img src="~/uploads/product/@Model.Product.ProductImages[i].Image" class="d-block w-100" alt="...">
                             </div>
                         }
 
@@ -51,52 +54,71 @@
 
             </div>
             <div class="col-6 shop-detail-right">
-                <h2>@Model.Name</h2>
-                <p class="price">$@Model.SalePrice.00</p>
+                <h2>@Model.Product.Name</h2>
+                <p class="price">$@Model.Product.SalePrice.00</p>
                 <div class="product-desc">
-                    @Model.Desc
+                    @Model.Product.Desc
                 </div>
                 <div class="product-quantity-box">
-                    <button class="add-button add-cart add-basket-btn" data-id="@Model.Id">ADD TO CART</button>
-                    <button class="add-button add-wishlist-btn" data-id="@Model.Id">WISHLIST</button>
+                    <button class="add-button add-cart add-basket-btn" data-id="@Model.Product.Id">ADD TO CART</button>
+                    <button class="add-button add-wishlist-btn" data-id="@Model.Product.Id">WISHLIST</button>
                 </div>
                 <hr>
                 <div class="shop-details-box">
                     <p>Variaty:</p>
-                    <span>@Model.Variaty.Name</span>
+                    <span>@Model.Product.Variaty.Name</span>
                 </div>
                 <div class="shop-details-box">
                     <p>Type:</p>
-                    <span>@Model.Type.Name</span>
+                    <span>@Model.Product.Type.Name</span>
                 </div>
                 <div class="shop-details-box">
                     <p>Vintage:</p>
-                    <span>@Model.Vintage.Year</span>
+                    <span>@Model.Product.Vintage.Year</span>
                 </div>
                 <div class="shop-details-box">
                     <p>Region:</p>
-                    <span>@Model.Region.Name</span>
+                    <span>@Model.Product.Region.Name @Model.Reviews.Count()</span>
                 </div>
                 <div class="product-rating-box">
                     <div class="product-rate">
-                        @for (int i = 1; i <= 5; i++)
+                        @if (Model.Reviews.Count() > 0)
                         {
-                            if (i <= Model.Rate)
+                            @for (int i = 1; i <= 5; i++)
                             {
-                                <i class="fas fa-star"></i>
+                                if (i <= Math.Ceiling((double)(Model.Reviews.Average(x => x.Rate))))
+                                {
+                                    <i class="fas fa-star"></i>
 
-                            }
-                            else
-                            {
-                                <i class="far fa-star"></i>
+                                }
+                                else
+                                {
+                                    <i class="far fa-star"></i>
 
+                                }
                             }
+
+                            <a href="" class="product-review-count">
+                                ( @Model.Reviews.Count() Reviews )
+                            </a>
+                        }
+                        else
+                        {
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+
+                            <a href="" class="product-review-count">
+                                ( 0 Reviews )
+                            </a>
                         }
 
+
+
                     </div>
-                    <a href="" class="product-review-count">
-                        ( 5 Reviews )
-                    </a>
+
                 </div>
             </div>
         </div>
@@ -109,81 +131,151 @@
             <h2>Customer Reviews</h2>
 
             <div class="all-users-reviews">
-                <div class="user-review-box">
-                    <div class="user-review">
-                        <div class="product-rate">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <p class="user-comment">
-                            This wine is the best
-                        </p>
-                    </div>
-                    <div class="review-detail">
-                        <p>Ulvi Asadzade</p>
-                        <p>|</p>
-                        <p>27.11.2021</p>
-                    </div>
-                </div>
+                @foreach (var item in Model.Reviews)
+                {
+                    <div class="user-review-box">
+                        <div class="user-review">
+                            <div class="product-rate">
 
-                <div class="user-review-box">
-                    <div class="user-review">
-                        <div class="product-rate">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= item.Rate)
+                                    {
+                                        <i class="fas fa-star"></i>
+
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-star"></i>
+
+                                    }
+                                }
+                                @*<i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>*@
+                            </div>
+                            <p class="user-comment">
+                                @item.Text
+                            </p>
                         </div>
-                        <p class="user-comment">
-                            Not bad
-                        </p>
+                        <div class="review-detail">
+                            <p>@item.AppUser.FullName</p>
+                            <p>|</p>
+                            <p>@item.CreatedAt.Year</p>
+                        </div>
                     </div>
-                    <div class="review-detail">
-                        <p>Ismail Abdullazade</p>
-                        <p>|</p>
-                        <p>28.11.2021</p>
+
+                }
+                @*<div class="user-review-box">
+                        <div class="user-review">
+                            <div class="product-rate">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <p class="user-comment">
+                                This wine is the best
+                            </p>
+                        </div>
+                        <div class="review-detail">
+                            <p>Ulvi Asadzade</p>
+                            <p>|</p>
+                            <p>27.11.2021</p>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="user-review-box">
+                        <div class="user-review">
+                            <div class="product-rate">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <p class="user-comment">
+                                Not bad
+                            </p>
+                        </div>
+                        <div class="review-detail">
+                            <p>Ismail Abdullazade</p>
+                            <p>|</p>
+                            <p>28.11.2021</p>
+                        </div>
+                    </div>*@
 
             </div>
 
-            <form class="add-your-review">
-                <h3>Add a review</h3>
-                <h5>Your rating</h5>
-                <div class="your-rate-box">
-                    <a href="">
-                        <i class="fas fa-star"></i>
-                    </a>
-                    <a href="">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </a>
-                    <a href="">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </a>
-                    <a href="">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </a>
-                    <a href="">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </a>
-                </div>
-                <textarea name="" id="" cols="45" rows="8" placeholder="Add your comment..."></textarea>
-                <button type="submit">SEND</button>
-            </form>
+            @if (member != null && member.Reviews == null)
+            {
+                <form class="add-your-review" asp-action="comment" asp-controller="product" asp-route-id="@Model.Product.Id" method="post">
+                    <h3>Add a review</h3>
+                    <h5>Your rating</h5>
+                    <div class="your-rate-box">
+                        <a>
+                            <i class="fas fa-star comment-rank"></i>
+                        </a>
+                        <a>
+                            <i class="fas fa-star comment-rank"></i>
+                        </a>
+                        <a>
+                            <i class="fas fa-star comment-rank"></i>
+                        </a>
+                        <a>
+                            <i class="fas fa-star comment-rank"></i>
+                        </a>
+                        <a>
+                            <i class="fas fa-star comment-rank"></i>
+                        </a>
+
+                    </div>
+                    <input type="hidden" asp-for="Rate" value="1" id="rate" />
+
+                    <textarea  cols="45" rows="8" placeholder="Add your comment..." asp-for="Text"></textarea>
+                    <span class="text-danger" asp-validation-for="Text"></span>
+
+                    <button type="submit">SEND</button>
+                </form>
+
+            }
+
+            @*<form class="add-your-review">
+                    <h3>Add a review</h3>
+                    <h5>Your rating</h5>
+                    <div class="your-rate-box">
+                        <a href="">
+                            <i class="fas fa-star"></i>
+                        </a>
+                        <a href="">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </a>
+                        <a href="">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </a>
+                        <a href="">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </a>
+                        <a href="">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </a>
+                    </div>
+                    <textarea name="" id="" cols="45" rows="8" placeholder="Add your comment..."></textarea>
+                    <button type="submit">SEND</button>
+                </form>*@
         </div>
     </div>
 </section>

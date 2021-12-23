@@ -2937,13 +2937,10 @@ body {
       body .product-reviews .add-your-review .your-rate-box {
         margin-bottom: 30px; }
         body .product-reviews .add-your-review .your-rate-box a {
-          color: #ddd;
-          margin-right: 10px;
-          font-size: 14px; }
+          color: #666;
+          cursor:pointer }
           body .product-reviews .add-your-review .your-rate-box a:hover {
             color: #f9bf00; }
-        body .product-reviews .add-your-review .your-rate-box a:not(:last-child) {
-          border-right: 2px solid #ebebeb; }
       body .product-reviews .add-your-review textarea {
         height: 100px;
         width: 100%;

@@ -33,6 +33,8 @@ namespace Ulvino.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<WishlistItem> WishlistItems { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
 
 
 

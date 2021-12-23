@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -161,6 +162,8 @@ namespace Ulvino.Controllers
 
             ViewBag.Wishlists = items;
 
+            ViewBag.SameProducts = _context.Products.Include(x => x.ProductImages).Where(x => x.Rate > 4).Take(4).ToList();
+
 
             Product product = _context.Products.Include(x => x.ProductImages).Include(x => x.Variaty).Include(x => x.Type)
                 .Include(x => x.Region).FirstOrDefault(x => x.Id == id);
@@ -170,9 +173,51 @@ namespace Ulvino.Controllers
                 return RedirectToAction("index", "error");
             }
 
-            ViewBag.SameProducts = _context.Products.Include(x => x.ProductImages).Where(x => x.Rate > 4).Take(4).ToList();
+            List<Review> reviews = _context.Reviews.Include(x => x.AppUser).Where(x => x.IsAccepted && x.ProductId == id).ToList();
 
-            return View(product);
+            ReviewViewModel reviewVM = new ReviewViewModel
+            {
+                Product = product,
+                Reviews = reviews
+            };
+
+            return View(reviewVM);
+        }
+
+
+        [Authorize(Roles = "Member")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Comment(int id, ReviewViewModel model)
+        {
+
+            Product product = _context.Products.Find(id);
+
+            if (product == null) return RedirectToAction("index", "error");
+
+            AppUser member = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            if (model.Text.Length > 250)
+            {
+                ModelState.AddModelError("Text", "Your text is very length");
+                return RedirectToAction("index", "error");
+            }
+
+            Review review = new Review
+            {
+                AppUserId = member.Id,
+                ProductId = id,
+                Rate = model.Rate,
+                Text = model.Text,
+                CreatedAt = DateTime.UtcNow
+            };
+
+
+            _context.Reviews.Add(review);
+
+            await _context.SaveChangesAsync();
+
+            return Redirect(HttpContext.Request.Headers["Referer"].ToString());
         }
 
 
