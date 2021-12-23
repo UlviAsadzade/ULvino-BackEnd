@@ -29,7 +29,7 @@
                     {
                         double price = item.Count * item.Price;
                         totalPrice += price;
-                        <div class=" row cart-page-box-item" id="1">
+                        <div class=" row cart-page-box-item" id="@item.ProductId">
                             <div class="col-1">
                                 <div class="cart-page-img">
                                     <a asp-controller="product" asp-action="detail" asp-route-id="@item.ProductId">
@@ -56,7 +56,7 @@
                                 <p class="cart-page-product-price subtotal"> <span>$</span> <span>@price.00</span></p>
                             </div>
                             <div class="col-1">
-                                <a href="" class="remove-product-icon remove-cart-item" data-id="@item.ProductId" data-target="1">
+                                <a href="" class="remove-product-icon remove-cart-item" data-id="@item.ProductId" data-target="@item.ProductId">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </div>

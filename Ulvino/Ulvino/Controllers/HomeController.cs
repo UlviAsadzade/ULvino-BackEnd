@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,14 +17,53 @@ namespace Ulvino.Controllers
     public class HomeController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly UserManager<AppUser> _userManager;
 
-        public HomeController(AppDbContext context)
+        public HomeController(AppDbContext context, IHttpContextAccessor contextAccessor, UserManager<AppUser> userManager)
         {
             _context = context;
+            _contextAccessor = contextAccessor;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Wishlists = null;
+
+            List<WishlistItemViewModel> items = new List<WishlistItemViewModel>();
+
+            AppUser member = null;
+
+            if (_contextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                member = _userManager.Users.FirstOrDefault(x => x.UserName == _contextAccessor.HttpContext.User.Identity.Name && !x.IsAdmin);
+            }
+
+            if (member == null)
+            {
+                var itemsStr = _contextAccessor.HttpContext.Request.Cookies["Wishlist"];
+
+                if (itemsStr != null)
+                {
+                    items = JsonConvert.DeserializeObject<List<WishlistItemViewModel>>(itemsStr);
+                    
+                }
+            }
+            else
+            {
+                List<WishlistItem> wishlistItems = _context.WishlistItems.Include(x => x.Product).ThenInclude(x => x.ProductImages).Where(x => x.AppUserId == member.Id).ToList();
+                items = wishlistItems.Select(x => new WishlistItemViewModel
+                {
+                    ProductId = x.ProductId,
+                    Image = x.Product.ProductImages.FirstOrDefault(bi => bi.IsPoster == true)?.Image,
+                    Name = x.Product.Name,
+                    Price = x.Product.SalePrice
+                }).ToList();
+            }
+
+            ViewBag.Wishlists = items;
+
             HomeViewModel homeVM = new HomeViewModel
             {
                 Sliders = _context.Sliders.ToList(),

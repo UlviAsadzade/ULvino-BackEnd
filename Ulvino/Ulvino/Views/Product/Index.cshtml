@@ -4,6 +4,8 @@
     ViewData["Title"] = "Index";
     int selectedPage = ViewBag.SelectedPage;
     decimal totalPage = ViewBag.TotalPage;
+    List<WishlistItemViewModel> wishlists = ViewBag.Wishlists;
+
 }
 
 
@@ -135,9 +137,27 @@
                                                 </div>
                                             </div>
                                             <div class="product-icons">
-                                                <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
-                                                    <i class="far fa-heart"></i>
-                                                </a>
+                                                @if (wishlists != null)
+                                                {
+                                                    @if (!wishlists.Any(f => f.ProductId == item.Id))
+                                                    {
+                                                        <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                                            <i class="far fa-heart"></i>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                                            <i class="fas fa-heart"></i>
+                                                        </a>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                                        <i class="far fa-heart"></i>
+                                                    </a>
+                                                }
 
                                                 <a href="" class="add-basket-btn" data-id="@item.Id">
                                                     <i class="fas fa-shopping-cart"></i>

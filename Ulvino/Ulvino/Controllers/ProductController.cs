@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -15,17 +16,58 @@ namespace Ulvino.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public ProductController(AppDbContext context, UserManager<AppUser> userManager)
+
+        public ProductController(AppDbContext context, UserManager<AppUser> userManager, IHttpContextAccessor contextAccessor)
         {
             _context = context;
             _userManager = userManager;
+            _contextAccessor = contextAccessor;
+
         }
 
         public IActionResult Index(int page = 1, int? cheapPriceId=null, int? middlePriceId = null, int? expensivePriceId = null,
                                    int? oldYearsId = null, int? middleYearsId = null, int? newYearsId = null,
                                    int? regionId = null, int? typeId = null, int? variatyId = null, string search = null)
         {
+
+
+            ViewBag.Wishlists = null;
+
+            List<WishlistItemViewModel> items = new List<WishlistItemViewModel>();
+
+            AppUser member = null;
+
+            if (_contextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                member = _userManager.Users.FirstOrDefault(x => x.UserName == _contextAccessor.HttpContext.User.Identity.Name && !x.IsAdmin);
+            }
+
+            if (member == null)
+            {
+                var itemsStr = _contextAccessor.HttpContext.Request.Cookies["Wishlist"];
+
+                if (itemsStr != null)
+                {
+                    items = JsonConvert.DeserializeObject<List<WishlistItemViewModel>>(itemsStr);
+
+                }
+            }
+            else
+            {
+                List<WishlistItem> wishlistItems = _context.WishlistItems.Include(x => x.Product).ThenInclude(x => x.ProductImages).Where(x => x.AppUserId == member.Id).ToList();
+                items = wishlistItems.Select(x => new WishlistItemViewModel
+                {
+                    ProductId = x.ProductId,
+                    Image = x.Product.ProductImages.FirstOrDefault(bi => bi.IsPoster == true)?.Image,
+                    Name = x.Product.Name,
+                    Price = x.Product.SalePrice
+                }).ToList();
+            }
+
+            ViewBag.Wishlists = items;
+
 
             var query = _context.Products.AsQueryable();
 
@@ -76,12 +118,49 @@ namespace Ulvino.Controllers
 
             ViewBag.SelectedPage = page;
             ViewBag.TotalPage = Math.Ceiling(query.Count() / 9m);
+
             return View(productVM);
         }
 
         public IActionResult Detail(int id)
         {
             if (!ModelState.IsValid)  return RedirectToAction("index", "error");
+
+            ViewBag.Wishlists = null;
+
+            List<WishlistItemViewModel> items = new List<WishlistItemViewModel>();
+
+            AppUser member = null;
+
+            if (_contextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                member = _userManager.Users.FirstOrDefault(x => x.UserName == _contextAccessor.HttpContext.User.Identity.Name && !x.IsAdmin);
+            }
+
+            if (member == null)
+            {
+                var itemsStr = _contextAccessor.HttpContext.Request.Cookies["Wishlist"];
+
+                if (itemsStr != null)
+                {
+                    items = JsonConvert.DeserializeObject<List<WishlistItemViewModel>>(itemsStr);
+
+                }
+            }
+            else
+            {
+                List<WishlistItem> wishlistItems = _context.WishlistItems.Include(x => x.Product).ThenInclude(x => x.ProductImages).Where(x => x.AppUserId == member.Id).ToList();
+                items = wishlistItems.Select(x => new WishlistItemViewModel
+                {
+                    ProductId = x.ProductId,
+                    Image = x.Product.ProductImages.FirstOrDefault(bi => bi.IsPoster == true)?.Image,
+                    Name = x.Product.Name,
+                    Price = x.Product.SalePrice
+                }).ToList();
+            }
+
+            ViewBag.Wishlists = items;
+
 
             Product product = _context.Products.Include(x => x.ProductImages).Include(x => x.Variaty).Include(x => x.Type)
                 .Include(x => x.Region).FirstOrDefault(x => x.Id == id);

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    List<WishlistItemViewModel> wishlists = ViewBag.Wishlists;
 }
 
 <main>
@@ -113,7 +114,7 @@
             <div class="top-sale-main">
                 <h3>Top Wines On Sale This Month!</h3>
                 <h1>UP TO 50% OFF</h1>
-                <a href="" class="button">SHOP NOW</a>
+                <a asp-controller="product" asp-action="index" class="button">SHOP NOW</a>
             </div>
         </div>
     </div>
@@ -165,9 +166,27 @@
                                     </div>
                                 </div>
                                 <div class="product-icons">
-                                    <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
-                                        <i class="far fa-heart"></i>
-                                    </a>
+                                    @if (wishlists != null)
+                                    {
+                                        @if (!wishlists.Any(f => f.ProductId == item.Id))
+                                        {
+                                            <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                                <i class="fas fa-heart"></i>
+                                            </a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+                                    }
 
                                     <a href="" class="add-basket-btn" data-id="@item.Id">
                                         <i class="fas fa-shopping-cart"></i>
@@ -219,9 +238,27 @@
                                     </div>
                                 </div>
                                 <div class="product-icons">
-                                    <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
-                                        <i class="far fa-heart"></i>
-                                    </a>
+                                    @if (wishlists != null)
+                                    {
+                                        @if (!wishlists.Any(f => f.ProductId == item.Id))
+                                        {
+                                            <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                                <i class="far fa-heart"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                                <i class="fas fa-heart"></i>
+                                            </a>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a href="" class="wishlist-button add-wishlist-btn" data-id="@item.Id">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+                                    }
 
                                     <a href="" class="add-basket-btn" data-id="@item.Id">
                                         <i class="fas fa-shopping-cart"></i>
