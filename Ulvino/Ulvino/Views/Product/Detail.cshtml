@@ -163,7 +163,7 @@
                         <div class="review-detail">
                             <p>@item.AppUser.FullName</p>
                             <p>|</p>
-                            <p>@item.CreatedAt.Year</p>
+                            <p>@item.CreatedAt.ToString("dd-MMMM-yyyy")</p>
                         </div>
                     </div>
 
@@ -242,40 +242,7 @@
                 </form>
 
             }
-
-            @*<form class="add-your-review">
-                    <h3>Add a review</h3>
-                    <h5>Your rating</h5>
-                    <div class="your-rate-box">
-                        <a href="">
-                            <i class="fas fa-star"></i>
-                        </a>
-                        <a href="">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </a>
-                        <a href="">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </a>
-                        <a href="">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </a>
-                        <a href="">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </a>
-                    </div>
-                    <textarea name="" id="" cols="45" rows="8" placeholder="Add your comment..."></textarea>
-                    <button type="submit">SEND</button>
-                </form>*@
+           
         </div>
     </div>
 </section>

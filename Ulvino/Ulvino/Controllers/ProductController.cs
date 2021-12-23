@@ -209,7 +209,7 @@ namespace Ulvino.Controllers
                 ProductId = id,
                 Rate = model.Rate,
                 Text = model.Text,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.Now
             };
 
 

@@ -1,0 +1,80 @@
+﻿@model List<Review>
+
+@{
+    ViewData["Title"] = "Index";
+    int order = 0;
+
+}
+
+
+<div class="page-content fade-in-up">
+    <div class="ibox ">
+        <div class="ibox-head p-5">
+            <h1>Reviews</h1>
+        </div>
+        <div class="ibox-body">
+            <table class="table bg-ebony-800 text-white table-bordered " id="example-table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">UserName</th>
+                        <th class="text-center">Text</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Edit</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        order++;
+                        <tr>
+
+                            <td class="align-middle text-center">@order</td>
+                            <td class="align-middle text-center">@item.AppUser.UserName</td>
+                            <td class="align-middle text-center">@item.Text</td>
+                            <td class="align-middle text-center">@item.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
+                            <td class="align-middle text-center">
+                                <h4>
+                                    <span class="font-14 p-2 badge badge-@(item.IsAccepted == true?"success":"info")">
+                                        @(item.IsAccepted == true ? "accepted":"pending")
+                                    </span>
+                                </h4>
+                            </td>
+                            <td class="align-middle text-center">
+                                <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning btn-rounded">Edit</a>
+                            </td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section tablejs
+{
+    <script type="text/javascript">
+        $(function() {
+                    $('#example-table').DataTable({
+                        pageLength: 10,
+                        //"ajax": '~/manage/demo/data/table_data.json',
+                        /*"columns": [
+                            { "data": "name" },
+                            { "data": "office" },
+                            { "data": "extn" },
+                            { "data": "start_date" },
+                            { "data": "salary" }
+                        ]*/
+                    });
+     })</script>
+
+    <script src="~/manage/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
+}
+
