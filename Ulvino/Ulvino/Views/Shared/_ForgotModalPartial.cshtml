@@ -1,0 +1,15 @@
+﻿@model ForgotPasswordViewModel
+
+
+
+<form asp-controller="account" asp-action="ForgotPassword" asp-area="">
+    <div class="form-imput-item">
+        <input asp-for="Email" type="text" placeholder="Enter your email">
+        <i class="fas fa-envelope"></i>
+    </div>
+    
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+    
+    <button type="submit">SEND MY PASSWORD</button>
+</form>

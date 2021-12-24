@@ -141,6 +141,20 @@ $(document).ready(function () {
     ///////////////////////////////////////////////////////////////
 
 
+    $(document).on("click", ".show-forgot-modal", function (e) {
+        e.preventDefault();
+
+        fetch('https://localhost:44363/account/ForgotPassword')
+            .then(response => response.text())
+            .then(data => {
+                $("#forgot-modal-detail").html(data)
+
+            })
+    });
+
+    ///////////////////////////////////////////////////////////////
+
+
     $(document).on("click", ".add-basket-btn", function (e) {
         e.preventDefault();
 
