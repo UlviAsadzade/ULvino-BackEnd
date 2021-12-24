@@ -6,6 +6,7 @@
     Setting setting = service.GetSetting();
     AppUser member = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
     List<BasketItemViewModel> basketItems = service.GetBasketItems();
+    List<WishlistItemViewModel> wishlistItems = service.GetWishlistItems();
     double totalCount = 0;
     totalCount = basketItems.Sum(x => x.Price * x.Count);
 
@@ -39,7 +40,8 @@
                             </a>
                             <a asp-controller="wishlist" asp-action="index">
                                 <i class="far fa-heart"></i>
-                                <span class="icon-count wishlist-total-count">0</span>
+                                <span class="icon-count wishlist-total-count">@wishlistItems.Count()</span>
+
                             </a>
                         </li>
                         <li class="account-box-main ">

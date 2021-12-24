@@ -168,9 +168,9 @@ $(document).ready(function () {
 
         fetch('https://localhost:44363/product/AddToWishlist/' + id)
             .then(response => response.text())
-        
-        var nese = $('.hidden-wishlist-count');
-        console.log(nese);
+        var hiddenWishlistCount = $('.hidden-wishlist-count').attr("data-id");
+        var wishlistTotalCount = $('.wishlist-total-count');
+        wishlistTotalCount.html(hiddenWishlistCount);
         
     });
 

@@ -77,5 +77,55 @@ namespace Ulvino.Services
 
             return items;
         }
+
+
+        public List<WishlistItemViewModel> GetWishlistItems()
+        {
+            List<WishlistItemViewModel> items = new List<WishlistItemViewModel>();
+
+            AppUser member = null;
+
+            if (_contextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                member = _userManager.Users.FirstOrDefault(x => x.UserName == _contextAccessor.HttpContext.User.Identity.Name && !x.IsAdmin);
+            }
+
+
+            if (member == null)
+            {
+                var itemsStr = _contextAccessor.HttpContext.Request.Cookies["Wishlist"];
+
+                if (itemsStr != null)
+                {
+                    items = JsonConvert.DeserializeObject<List<WishlistItemViewModel>>(itemsStr);
+
+                    foreach (var item in items)
+                    {
+                        Product product = _context.Products.Include(c => c.ProductImages).FirstOrDefault(x => x.Id == item.ProductId);
+
+                        if (product != null)
+                        {
+                            item.Name = product.Name;
+                            item.Price = product.SalePrice;
+                            item.Image = product.ProductImages.FirstOrDefault(x => x.IsPoster == true)?.Image;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                List<WishlistItem> wishlistItems = _context.WishlistItems.Include(x => x.Product).ThenInclude(x => x.ProductImages).Where(x => x.AppUserId == member.Id).ToList();
+                items = wishlistItems.Select(x => new WishlistItemViewModel
+                {
+                    ProductId = x.ProductId,
+                    Image = x.Product.ProductImages.FirstOrDefault(bi => bi.IsPoster == true)?.Image,
+                    Name = x.Product.Name,
+                    Price = x.Product.SalePrice
+                }).ToList();
+            }
+
+            return items;
+        }
+
     }
 }

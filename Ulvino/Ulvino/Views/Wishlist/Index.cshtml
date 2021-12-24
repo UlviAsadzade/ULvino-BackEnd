@@ -28,13 +28,13 @@
                     <div class=" row wishlist-page-box-item" id="@item.ProductId">
                         <div class="col-1">
                             <div class="wishlist-page-img">
-                                <a href="">
+                                <a asp-controller="product" asp-action="detail" asp-route-id="@item.ProductId">
                                     <img src="~/uploads/product/@item.Image" alt="">
                                 </a>
                             </div>
                         </div>
                         <div class="col-6">
-                            <a href="" class="wishlist-page-product-name">
+                            <a asp-controller="product" asp-action="detail" asp-route-id="@item.ProductId" class="wishlist-page-product-name">
                                 @item.Name
                             </a>
                         </div>
