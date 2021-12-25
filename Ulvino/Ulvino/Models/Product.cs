@@ -48,6 +48,7 @@ namespace Ulvino.Models
 
 
         [NotMapped]
+
         public IFormFile PosterFile { get; set; }
 
         [NotMapped]

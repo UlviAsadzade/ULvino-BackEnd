@@ -62,6 +62,7 @@ namespace Ulvino.Areas.Manage.Controllers
             if (product.PosterFile == null)
             {
                 ModelState.AddModelError("PosterFile", "Poster file is required");
+                return View();
             }
             else
             {

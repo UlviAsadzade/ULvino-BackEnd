@@ -85,6 +85,8 @@ namespace Ulvino.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout(CheckoutViewModel checkoutVM)
         {
+            TempData["Order"] = false;
+
             checkoutVM.BasketItemViewModels = _getBasketItems();
 
             if (!ModelState.IsValid) return View(checkoutVM);
@@ -157,6 +159,8 @@ namespace Ulvino.Controllers
                 _context.BasketItems.RemoveRange(_context.BasketItems.Where(x => x.AppUserId == member.Id));
                 _context.SaveChanges();
             }
+
+            TempData["Order"] = true;
 
             return RedirectToAction("index", "home");
         }

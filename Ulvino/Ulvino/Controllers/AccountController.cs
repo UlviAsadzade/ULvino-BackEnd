@@ -39,7 +39,30 @@ namespace Ulvino.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterPost(MemberRegisterViewModel registerVM)
         {
-            if (!ModelState.IsValid) return RedirectToAction("index", "error");
+            TempData["Register"] = false;
+
+            if (!ModelState.IsValid) return RedirectToAction("index", "home");
+
+            if (registerVM == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+
+            if (registerVM.UserName == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            if (registerVM.Email == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            if (registerVM.FullName == null)
+            {
+                return RedirectToAction("index", "home");
+            }
 
 
             AppUser member = await _userManager.FindByNameAsync(registerVM.UserName);
@@ -60,6 +83,7 @@ namespace Ulvino.Controllers
                 return RedirectToAction("index", "error");
 
             }
+
 
             member = new AppUser
             {
@@ -90,6 +114,18 @@ namespace Ulvino.Controllers
             await _userManager.AddToRoleAsync(member, "Member");
             await _signInManager.SignInAsync(member, true);
 
+            TempData["Register"] = true;
+
+            string body = string.Empty;
+
+            using (StreamReader reader = new StreamReader("wwwroot/templates/Register.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+
+
+            _emailService.Send(registerVM.Email, "Welcome to Ulvino", body);
+
             return RedirectToAction("index", "home");
         }
 
@@ -105,14 +141,23 @@ namespace Ulvino.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LoginPost (MemberLoginViewModel loginVM)
         {
-            if (!ModelState.IsValid) return View();
+            TempData["Login"] = false;
+
+            if (!ModelState.IsValid) return RedirectToAction("index", "home");
+
+            if (loginVM == null)
+            {
+                return RedirectToAction("index", "home");
+            }
+
 
             AppUser member = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginVM.UserName && !x.IsAdmin);
 
             if (member == null)
             {
                 ModelState.AddModelError("", "username or password incorrect!");
-                return RedirectToAction("index", "error");
+
+                return RedirectToAction("index", "home");
             }
 
             var result = await _signInManager.PasswordSignInAsync(member, loginVM.Password, true, false);
@@ -120,9 +165,12 @@ namespace Ulvino.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "username or password incorrect!");
-                return RedirectToAction("index", "error");
+
+                return RedirectToAction("index", "home");
 
             }
+
+            TempData["Login"] = true;
 
             return RedirectToAction("index", "home");
         }
@@ -184,11 +232,15 @@ namespace Ulvino.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPasswordVM)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return View(resetPasswordVM);
 
             AppUser user = await _userManager.FindByEmailAsync(resetPasswordVM.Email);
 
-            if (user == null) return RedirectToAction("index", "error");
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Invalid Token");
+                return View(resetPasswordVM);
+            }
 
             var resetResult = await _userManager.ResetPasswordAsync(user, resetPasswordVM.Token, resetPasswordVM.Password);
 
@@ -199,7 +251,7 @@ namespace Ulvino.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
 
-                return View();
+                return View(resetPasswordVM);
             }
 
 
@@ -240,7 +292,7 @@ namespace Ulvino.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Profile(ProfileViewModel profileVM)
         {
-            TempData["Success"] = false;
+            TempData["ProfileEdit"] = false;
 
             if (!ModelState.IsValid) return RedirectToAction("profile");
 
@@ -262,7 +314,7 @@ namespace Ulvino.Controllers
 
             }
 
-            if (member.Email != profileVM.Email || _userManager.Users.Any(x => x.Email == profileVM.Email))
+            if (member.Email != profileVM.Email && _userManager.Users.Any(x => x.NormalizedEmail == profileVM.Email.ToUpper()))
             {
                 ModelState.AddModelError("Email", "This email has already been taken!");
 
@@ -286,7 +338,7 @@ namespace Ulvino.Controllers
                 return RedirectToAction("profile");
             }
 
-            TempData["Success"] = true;
+            TempData["ProfileEdit"] = true;
 
             return RedirectToAction("profile");
         }

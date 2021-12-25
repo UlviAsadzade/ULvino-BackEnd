@@ -3,18 +3,28 @@
 <form asp-controller="account" asp-action="Register" asp-area="">
     <div class="form-imput-item">
         <input asp-for="UserName" type="text" placeholder="Your username">
+        <span asp-validation-for="UserName" class="text-danger"></span>
+
     </div>
     <div class="form-imput-item">
         <input asp-for="FullName" type="text" placeholder="Your fullname">
+        <span asp-validation-for="FullName" class="text-danger"></span>
+
     </div>
     <div class="form-imput-item">
         <input asp-for="Email" type="email" placeholder="Your email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+
     </div>
     <div class="form-imput-item">
         <input asp-for="Password" type="password" placeholder="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+
     </div>
     <div class="form-imput-item">
         <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password">
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
     </div>
     <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 

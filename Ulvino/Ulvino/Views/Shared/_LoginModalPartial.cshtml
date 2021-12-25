@@ -6,10 +6,14 @@
     <div class="form-imput-item">
         <input asp-for="UserName" type="text" placeholder="Username">
         <i class="fas fa-user"></i>
+        <span asp-validation-for="UserName" class="text-danger"></span>
+
     </div>
     <div class="form-imput-item">
         <input asp-for="Password" type="password" placeholder="Password">
         <i class="fas fa-lock"></i>
+        <span asp-validation-for="Password" class="text-danger"></span>
+
     </div>
     <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 

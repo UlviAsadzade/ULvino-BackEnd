@@ -7,6 +7,19 @@
 }
 
 
+@if (TempData["Order"] != null)
+{
+    if ((bool)TempData["Order"] == true)
+    {
+        <input type="hidden" id="success" />
+    }
+    else
+    {
+        <input type="hidden" id="error" />
+
+    }
+}
+
 
 <section class="page-title" style="background-image: url('/assets/images/page-title.jpg');">
     <div class="container">
@@ -108,7 +121,7 @@
                             </tr>
 
                         }
-                        
+
                     </tbody>
                     <tfoot>
                         <tr class="order-total">
@@ -128,5 +141,16 @@
 </section>
 
 
-
+@section checkoutjs{
+    <script>
+        $(document).ready(function () {
+            if ($("#success").length) {
+                toastr["success"]("Your info has been changed successfully!", "Congratulations")
+            }
+            else if ($("#error").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+}
 

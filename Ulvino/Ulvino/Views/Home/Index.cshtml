@@ -1,9 +1,57 @@
 ﻿@model HomeViewModel
+@inject UserManager<AppUser> userManager
 
 @{
     ViewData["Title"] = "Home Page";
     List<WishlistItemViewModel> wishlists = ViewBag.Wishlists;
+    AppUser member = User.Identity.IsAuthenticated ? userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin) : null;
+
 }
+
+@if (TempData["Order"] != null)
+{
+    if ((bool)TempData["Order"] == true)
+    {
+        <input type="hidden" id="orderSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="orderError" />
+
+    }
+}
+
+@if (TempData["Register"] != null)
+{
+    if ((bool)TempData["Register"] == true)
+    {
+        <input type="hidden" id="registerSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="registerError" />
+
+    }
+}
+
+@if (TempData["Login"] != null)
+{
+    if ((bool)TempData["Login"] == true)
+    {
+        <input type="hidden" id="loginSuccess" />
+    }
+    else
+    {
+        <input type="hidden" id="loginError" />
+
+    }
+}
+
+@if (member != null)
+{
+    <input hidden class="hidden-member" value="@member.FullName" />
+}
+
 
 <main>
     <div class="container-fluid p-0">
@@ -490,4 +538,39 @@
 @section homejs
 {
     <script src="~/assets/js/index.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ($("#orderSuccess").length) {
+                toastr["success"]("Your order has been sent for confirmation!", "Congratulations")
+            }
+            else if ($("#orderError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var member = $('.hidden-member').val();
+            if ($("#registerSuccess").length) {
+                toastr["success"]("You have successfully joined us!", "Hello" + " " + member)
+            }
+            else if ($("#registerError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var member = $('.hidden-member').val();
+            if ($("#loginSuccess").length) {
+                toastr["success"]("Welcome back to us!", "Hello" + " " + member)
+            }
+            else if ($("#loginError").length) {
+                toastr["error"]("Something went wrong!", "Upsss Sorry")
+            }
+        })
+    </script>
+
 }
