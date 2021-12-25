@@ -301,6 +301,13 @@
                     </li>
 
                     <li>
+                        <a asp-action="index" asp-controller="setting">
+                            <i class="sidebar-item-icon fa fa-file-text"></i>
+                            <span class="nav-label">Setting</span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a asp-action="index" asp-controller="slider">
                             <i class="sidebar-item-icon fa fa-file-text"></i>
                             <span class="nav-label">Slider</span>
@@ -331,7 +338,7 @@
             </div>
         </nav>
         <!-- END SIDEBAR-->
-        <div class="content-wrapper" style="min-height:700px">
+        <div class="content-wrapper" style="min-height:900px">
             @RenderBody()
         </div>
     </div>

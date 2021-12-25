@@ -159,6 +159,9 @@ namespace Ulvino.Areas.Manage.Controllers
         [HttpPost]
         public IActionResult Edit(Product product)
         {
+            ViewBag.Regions = _context.Regions.ToList();
+            ViewBag.Variaties = _context.Variaties.ToList();
+            ViewBag.Types = _context.Types.ToList();
 
             if (!_context.Regions.Any(x => x.Id == product.RegionId)) ModelState.AddModelError("RegionId", "Region not found!");
             if (!_context.Variaties.Any(x => x.Id == product.VariatyId)) ModelState.AddModelError("VariatyId", "Variaty not found!");
@@ -177,13 +180,13 @@ namespace Ulvino.Areas.Manage.Controllers
                 if (product.PosterFile.ContentType != "image/png" && product.PosterFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("PosterFile", "File type can be only jpeg,jpg or png!");
-                    return View();
+                    return View(existProduct);
                 }
 
                 if (product.PosterFile.Length > 2097152)
                 {
                     ModelState.AddModelError("PosterFile", "File size can not be more than 2MB!");
-                    return View();
+                    return View(existProduct);
                 }
 
                 ProductImage poster = existProduct.ProductImages.FirstOrDefault(x => x.IsPoster == true);
@@ -207,6 +210,7 @@ namespace Ulvino.Areas.Manage.Controllers
                     poster.Image = newPosterName;
                 }
             }
+           
 
             List<ProductImage> removablePhotos = existProduct.ProductImages.Where(x => x.IsPoster == false && !product.ProductImageIds.Contains(x.Id)).ToList();
 
@@ -246,19 +250,24 @@ namespace Ulvino.Areas.Manage.Controllers
 
             if (product.Rate < 0)
             {
-                return RedirectToAction("index", "error", new { area = "" });
+                ModelState.AddModelError("Rate", "Rate count can not be less than 0");
 
+                return View(existProduct);
             }
 
             if (product.CostPrice < 0)
             {
-                return RedirectToAction("index", "error", new { area = "" });
+                ModelState.AddModelError("CostPrice", "CostPrice count can not be less than 0");
+
+                return View(existProduct);
 
             }
 
             if (product.SalePrice < 0)
             {
-                return RedirectToAction("index", "error", new { area = "" });
+                ModelState.AddModelError("SalePrice", "SalePrice count can not be less than 0");
+
+                return View(existProduct);
 
             }
            

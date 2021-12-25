@@ -22,6 +22,7 @@
     <Folder Include="wwwroot\uploads\blog\" />
     <Folder Include="wwwroot\uploads\customer\" />
     <Folder Include="wwwroot\uploads\feature\" />
+    <Folder Include="wwwroot\uploads\setting\" />
     <Folder Include="wwwroot\uploads\product\" />
     <Folder Include="wwwroot\uploads\slider\" />
     <Folder Include="wwwroot\uploads\team\" />

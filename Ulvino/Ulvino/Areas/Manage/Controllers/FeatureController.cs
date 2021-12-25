@@ -98,13 +98,13 @@ namespace Ulvino.Areas.Manage.Controllers
                 if (feature.ImageFile.ContentType != "image/png" && feature.ImageFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("ImageFile", "File type can be only jpeg,jpg or png!");
-                    return View();
+                    return View(existFeature);
                 }
 
                 if (feature.ImageFile.Length > 2097152)
                 {
                     ModelState.AddModelError("ImageFile", "File size can not be more than 2MB!");
-                    return View();
+                    return View(existFeature);
                 }
 
                 fileName = FileManager.Save(_env.WebRootPath, "uploads/feature", feature.ImageFile);

@@ -101,18 +101,19 @@ namespace Ulvino.Areas.Manage.Controllers
             if (existBlog == null) return RedirectToAction("index", "error", new { area = "" });
 
             string fileName = null;
+
             if (blog.ImageFile != null)
             {
                 if (blog.ImageFile.ContentType != "image/png" && blog.ImageFile.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("ImageFile", "File type can be only jpeg,jpg or png!");
-                    return View();
+                    return View(existBlog);
                 }
 
                 if (blog.ImageFile.Length > 2097152)
                 {
                     ModelState.AddModelError("ImageFile", "File size can not be more than 2MB!");
-                    return View();
+                    return View(existBlog);
                 }
 
                 fileName = FileManager.Save(_env.WebRootPath, "uploads/blog", blog.ImageFile);

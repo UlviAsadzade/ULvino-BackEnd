@@ -1,0 +1,219 @@
+﻿@model Setting
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container-fluid pt-3">
+    <h1 class="pb-5 text-warning">Edit</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="CustomerSubtitle">CustomerSubtitle</label>
+                <input asp-for="CustomerSubtitle" class="form-control input-rounded" placeholder="CustomerSubtitle">
+                <span class="text-danger" asp-validation-for="CustomerSubtitle"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="CustomerTitle">CustomerTitle</label>
+                <input asp-for="CustomerTitle" class="form-control input-rounded" placeholder="CustomerTitle">
+                <span class="text-danger" asp-validation-for="CustomerTitle"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="CustomerDesc">CustomerDesc</label>
+                <input asp-for="CustomerDesc" class="form-control input-rounded" placeholder="CustomerDesc">
+                <span class="text-danger" asp-validation-for="CustomerDesc"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="FooterDesc">FooterDesc</label>
+                <input asp-for="FooterDesc" class="form-control input-rounded" placeholder="FooterDesc">
+                <span class="text-danger" asp-validation-for="FooterDesc"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="ContactEmail">ContactEmail</label>
+                <input asp-for="ContactEmail" class="form-control input-rounded" placeholder="ContactEmail">
+                <span class="text-danger" asp-validation-for="ContactEmail"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="EmailIcon">PinterestUrl</label>
+                <input asp-for="EmailIcon" class="form-control input-rounded" placeholder="EmailIcon">
+                <span class="text-danger" asp-validation-for="EmailIcon"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="Address">Address</label>
+                <input asp-for="Address" class="form-control input-rounded" placeholder="Address">
+                <span class="text-danger" asp-validation-for="Address"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="LocationIcon">LocationIcon</label>
+                <input asp-for="LocationIcon" class="form-control input-rounded" placeholder="LocationIcon">
+                <span class="text-danger" asp-validation-for="LocationIcon"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="HomeIcon">HomeIcon</label>
+                <input asp-for="HomeIcon" class="form-control input-rounded" placeholder="HomeIcon">
+                <span class="text-danger" asp-validation-for="HomeIcon"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="Phone">Phone</label>
+                <input asp-for="Phone" class="form-control input-rounded" placeholder="Phone">
+                <span class="text-danger" asp-validation-for="Phone"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="PhoneIcon">PhoneIcon</label>
+                <input asp-for="PhoneIcon" class="form-control input-rounded" placeholder="PhoneIcon">
+                <span class="text-danger" asp-validation-for="PhoneIcon"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="WorkTime">WorkTime</label>
+                <input asp-for="WorkTime" class="form-control input-rounded" placeholder="WorkTime">
+                <span class="text-danger" asp-validation-for="WorkTime"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="WorkTimeIcon">WorkTimeIcon</label>
+                <input asp-for="WorkTimeIcon" class="form-control input-rounded" placeholder="WorkTimeIcon">
+                <span class="text-danger" asp-validation-for="WorkTimeIcon"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="Hotline">Hotline</label>
+                <input asp-for="Hotline" class="form-control input-rounded" placeholder="Hotline">
+                <span class="text-danger" asp-validation-for="Hotline"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="SupportEmail">SupportEmail</label>
+                <input asp-for="SupportEmail" class="form-control input-rounded" placeholder="SupportEmail">
+                <span class="text-danger" asp-validation-for="SupportEmail"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="Adress2">Adress2</label>
+                <input asp-for="Adress2" class="form-control input-rounded" placeholder="Adress2">
+                <span class="text-danger" asp-validation-for="Adress2"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="TwitterIcon">TwitterIcon</label>
+                <input asp-for="TwitterIcon" class="form-control input-rounded" placeholder="TwitterIcon">
+                <span class="text-danger" asp-validation-for="TwitterIcon"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="TwitterUrl">TwitterUrl</label>
+                <input asp-for="TwitterUrl" class="form-control input-rounded" placeholder="TwitterUrl">
+                <span class="text-danger" asp-validation-for="TwitterUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="FacebookIcon">FacebookIcon</label>
+                <input asp-for="FacebookIcon" class="form-control input-rounded" placeholder="FacebookIcon">
+                <span class="text-danger" asp-validation-for="FacebookIcon"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="FacebookUrl">FacebookUrl</label>
+                <input asp-for="FacebookUrl" class="form-control input-rounded" placeholder="FacebookUrl">
+                <span class="text-danger" asp-validation-for="FacebookUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="YoutubeIcon">YoutubeIcon</label>
+                <input asp-for="YoutubeIcon" class="form-control input-rounded" placeholder="YoutubeIcon">
+                <span class="text-danger" asp-validation-for="YoutubeIcon"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="YoutubeUrl">YoutubeUrl</label>
+                <input asp-for="YoutubeUrl" class="form-control input-rounded" placeholder="YoutubeUrl">
+                <span class="text-danger" asp-validation-for="YoutubeUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="GooglePlusIcon">GooglePlusIcon</label>
+                <input asp-for="GooglePlusIcon" class="form-control input-rounded" placeholder="GooglePlusIcon">
+                <span class="text-danger" asp-validation-for="GooglePlusIcon"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="GooglePlusUrl">Profession</label>
+                <input asp-for="GooglePlusUrl" class="form-control input-rounded" placeholder="GooglePlusUrl">
+                <span class="text-danger" asp-validation-for="GooglePlusUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="PinterestIcon">PinterestIcon</label>
+                <input asp-for="PinterestIcon" class="form-control input-rounded" placeholder="PinterestIcon">
+                <span class="text-danger" asp-validation-for="PinterestIcon"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="PinterestUrl">PinterestUrl</label>
+                <input asp-for="PinterestUrl" class="form-control input-rounded" placeholder="PinterestUrl">
+                <span class="text-danger" asp-validation-for="PinterestUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6 ">
+                <label class="font-18" asp-for="ProcessDesc">ProcessDesc</label>
+                <input asp-for="ProcessDesc" class="form-control input-rounded" placeholder="ProcessDesc">
+                <span class="text-danger" asp-validation-for="ProcessDesc"></span>
+            </div>
+            <div class="form-group col-md-6 ">
+                <label class="font-18" asp-for="MapUrl">MapUrl</label>
+                <input asp-for="MapUrl" class="form-control input-rounded" placeholder="MapUrl">
+                <span class="text-danger" asp-validation-for="MapUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="HeaderLogoFile">HeaderLogo</label>
+                <input asp-for="HeaderLogoFile" class="form-control input-rounded" placeholder="HeaderLogo">
+                <span class="text-danger" asp-validation-for="HeaderLogoFile"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <input type="hidden" name="Image" value="@Model.HeaderLogo" />
+                <img style="max-width: 300px; border-radius: 10px; display:block;" src="~/uploads/setting/@Model.HeaderLogo" />
+                <button class="btn btn-danger mt-2 remove-img-box" style="margin-left:115px; cursor:pointer">Delete</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="FooterLogoFile">FooterLogo</label>
+                <input asp-for="FooterLogoFile" class="form-control input-rounded" placeholder="FooterLogo">
+                <span class="text-danger" asp-validation-for="FooterLogoFile"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <input type="hidden" name="Image" value="@Model.FooterLogo" />
+                <img style="max-width: 300px; border-radius: 10px; display:block;" src="~/uploads/setting/@Model.FooterLogo" />
+                <button class="btn btn-danger mt-2 remove-img-box" style="margin-left:115px; cursor:pointer">Delete</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class="font-18" asp-for="HotlineFile">HotlineImage</label>
+                <input asp-for="HotlineFile" class="form-control input-rounded" placeholder="HotlineImage">
+                <span class="text-danger" asp-validation-for="HotlineFile"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <input type="hidden" name="Image" value="@Model.HotlineImage" />
+                <img style="max-width: 300px; border-radius: 10px; display:block;" src="~/uploads/setting/@Model.HotlineImage" />
+                <button class="btn btn-danger mt-2 remove-img-box" style="margin-left:115px; cursor:pointer">Delete</button>
+            </div>
+        </div>
+        <div class="form-group pt-5 text-center">
+            <button type="submit" class="btn btn-warning btn-rounded font-20 w-25 text-center">Edit</button>
+        </div>
+
+    </form>
+</div>
+
