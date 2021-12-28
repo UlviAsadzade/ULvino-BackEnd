@@ -71,6 +71,7 @@ namespace Ulvino.Controllers
                 FeaturedProducts = _context.Products.Include(x=>x.ProductImages).Where(x=>x.IsFeatured).Take(8).ToList(),
                 PopularProducts = _context.Products.Include(x=>x.ProductImages).Where(x=>x.Rate>4).Take(8).ToList(),
                 Customers = _context.Customers.ToList(),
+                Reviews = _context.Reviews.Include(x => x.AppUser).ToList(),
                 Settings = _context.Settings.FirstOrDefault()
             };
 
@@ -87,6 +88,16 @@ namespace Ulvino.Controllers
                 .FirstOrDefault(x => x.Id == id);
 
             return PartialView("_ProductModalPartial", product);
+        }
+
+
+        public IActionResult Search(string search)
+        {
+            var query = _context.Products.Include(x=>x.ProductImages).AsQueryable().Where(x => x.Name.Contains(search));
+
+            List<Product> products = query.OrderByDescending(x => x.Id).ToList();
+
+            return PartialView("_SearchPartial", products);
         }
 
 

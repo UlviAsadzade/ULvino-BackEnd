@@ -182,9 +182,11 @@ $(document).ready(function () {
 
         fetch('https://localhost:44363/product/AddToWishlist/' + id)
             .then(response => response.text())
-        var hiddenWishlistCount = $('.hidden-wishlist-count').attr("data-id");
-        var wishlistTotalCount = $('.wishlist-total-count');
-        wishlistTotalCount.html(hiddenWishlistCount);
+        var nese = $('.ferid').val();
+        console.log(nese);
+        //var hiddenWishlistCount = $('.hidden-wishlist-count').attr("data-id");
+        //var wishlistTotalCount = $('.wishlist-total-count');
+        //wishlistTotalCount.html(hiddenWishlistCount);
         
     });
 
@@ -303,6 +305,21 @@ $(document).ready(function () {
             document.querySelector('#rate').value = index + 1;
             for (let i = 0; i <= index; i++) {
                 ranks[i].style.color = '#f9bf00';
+            }
+        })
+    })
+
+
+    ///////////////////////////////////////////////////////////////
+
+
+    $('#search').keyup(function () {
+        let search = $(this).val();
+        $.ajax({
+            url: 'https://localhost:44363/home/search?search=' + search,
+            method: 'get',
+            success: function (resp) {
+                $('.search-list').html(resp);
             }
         })
     })

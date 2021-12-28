@@ -78,7 +78,7 @@ namespace Ulvino.Areas.Manage.Controllers
                        .Replace("{{adress}}", order.Address.ToString()).Replace("{{date}}", order.CreatedAt.ToString("dd MMM yyyy HH:mm"));
 
              
-            _emailService.Send(order.AppUser.Email, "Order accepted", body);
+            _emailService.Send(order.Email, "Order accepted", body);
 
             return RedirectToAction("index");
         }

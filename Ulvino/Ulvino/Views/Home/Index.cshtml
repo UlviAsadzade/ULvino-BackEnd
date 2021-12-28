@@ -366,115 +366,50 @@
     </div>
 </section>
 
-<section class="testimonials" style="background-image: url(./assets/images/testimonials-bg.jpg);">
-    <div class="container">
-        <div class="row testimonials-main">
+@if (Model.Reviews.Count() > 0)
+{
+    <section class="testimonials" style="background-image: url(./assets/images/testimonials-bg.jpg);">
+        <div class="container">
+            <div class="row testimonials-main">
 
-            <h3>Clients Feedback</h3>
-            <div class="arrows">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#a34253"
-                     class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#a34253"
-                     class="bi bi-chevron-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                </svg>
-            </div>
-            <div class="feedback-box active">
-                <div class="feedback-user">
-                    <p>
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type
-                        and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                        also the
-                        leap into electronic typesetting, remaining essentially unchanged."
-                    </p>
-                    <div class="user-box">
-                        <div class="user-img">
-                            <img src="~/assets/images/user.png" alt="">
-                        </div>
-                        <div class="user-name">
-                            <span>David Beckham</span>
-                            <span>Developer</span>
+                <h3>Clients Feedback</h3>
+                <div class="arrows">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#a34253"
+                         class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#a34253"
+                         class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                </div>
+                @for (int i = 0; i < Model.Reviews.Count; i++)
+                {
+                    <div class="feedback-box @(i==0?"active":"")">
+                        <div class="feedback-user">
+                            <p>
+                                "@Model.Reviews[i].Text."
+                            </p>
+                            <div class="user-box">
+                                <div class="user-img">
+                                    <img src="~/assets/images/user.png" alt="">
+                                </div>
+                                <div class="user-name">
+                                    <span>@Model.Reviews[i].AppUser.FullName</span>
+                                    <span>Member</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                }
             </div>
-
-            <div class="feedback-box">
-                <div class="feedback-user ">
-                    <p>
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        "
-                    </p>
-                    <div class="user-box">
-                        <div class="user-img">
-                            <img src="~/assets/images/user.png" alt="">
-                        </div>
-                        <div class="user-name">
-                            <span>Jessica Jung</span>
-                            <span>Designer</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="feedback-box">
-                <div class="feedback-user">
-                    <p>
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type
-                        and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                        also the
-                        leap into electronic typesetting, remaining essentially unchanged."
-                    </p>
-                    <div class="user-box">
-                        <div class="user-img">
-                            <img src="~/assets/images/user.png" alt="">
-                        </div>
-                        <div class="user-name">
-                            <span>John Doe</span>
-                            <span>CEO</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="feedback-box">
-                <div class="feedback-user">
-                    <p>
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        ."
-                    </p>
-                    <div class="user-box">
-
-                        <div class="user-img">
-                            <img src="~/assets/images/user.png" alt="">
-                        </div>
-                        <div class="user-name">
-                            <span>David Beckham</span>
-                            <span>Developer</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
         </div>
-    </div>
-</section>
+    </section>
+
+}
 
 <section class="last-blog">
     <div class="container">

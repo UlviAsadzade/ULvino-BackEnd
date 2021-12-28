@@ -13,6 +13,7 @@ namespace Ulvino.ViewModels
         public List<Product> FeaturedProducts { get; set; }
         public List<Product> PopularProducts { get; set; }
         public List<Customer> Customers { get; set; }
+        public List<Review> Reviews { get; set; }
         public Setting Settings { get; set; }
 
     }

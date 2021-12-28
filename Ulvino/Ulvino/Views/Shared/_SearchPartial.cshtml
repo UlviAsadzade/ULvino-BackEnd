@@ -1,0 +1,13 @@
+﻿@model List<Product>
+
+
+@foreach (Product product in Model)
+{
+    <li class="list-group-item" style="margin-top:5px">
+        <a asp-action="detail" , asp-controller="product" asp-route-id="@product.Id">
+            <img src="~/uploads/product/@product.ProductImages.FirstOrDefault(x=>x.IsPoster)?.Image" />
+            <p>@product.Name</p>
+            <p>$@product.SalePrice.00</p>
+        </a>
+    </li>
+}

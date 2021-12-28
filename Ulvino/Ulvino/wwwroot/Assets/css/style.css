@@ -2075,16 +2075,35 @@ body {
       body .modal#searchModal .modal-dialog .modal-content {
         background-color: transparent;
         border: none; }
-        body .modal#searchModal .modal-dialog .modal-content input {
-          color: #7e7e7e;
-          border-radius: 30px;
-          border: 1px solid #e5e5e5;
-          width: 800px;
-          height: 60px;
-          font-size: 25px;
-          text-align: center;
-          color: #fff;
-          background-color: transparent; }
+        body .modal#searchModal .modal-dialog .modal-content .search-list {
+            width: 760px;
+            margin: 0 auto;
+            overflow-y: scroll;
+            max-height: 300px;
+        }
+            body .modal#searchModal .modal-dialog .modal-content .search-list .price {
+                color: #a34253;
+            }
+        body .modal#searchModal .modal-dialog .modal-content .search-list a {
+            display:flex;
+            justify-content: space-around;
+            align-items:center;
+            color: black;
+        }
+            body .modal#searchModal .modal-dialog .modal-content .search-list a img{
+                width:60px;
+            }
+    body .modal#searchModal .modal-dialog .modal-content input {
+        color: #7e7e7e;
+        border-radius: 30px;
+        border: 1px solid #e5e5e5;
+        width: 800px;
+        height: 60px;
+        font-size: 25px;
+        text-align: center;
+        color: #fff;
+        background-color: transparent;
+    }
           body .modal#searchModal .modal-dialog .modal-content input:focus {
             outline: none;
             box-shadow: 0 0 10px #e6dee0; }
