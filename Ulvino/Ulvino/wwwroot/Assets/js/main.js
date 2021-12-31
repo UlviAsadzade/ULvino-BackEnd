@@ -1,5 +1,4 @@
 // Header section start
-
 const accountIcon = document.querySelector('.header-fixed .fa-user')
 const accountBox = document.querySelector('.account-box-main')
 const cartIcon = document.querySelector('.header-fixed .fa-shopping-cart')
@@ -174,21 +173,22 @@ $(document).ready(function () {
 
     ///////////////////////////////////////////////////////////////
 
+    var hiddenWishlistCount = parseInt($('.hidden-wishlist-count').val());
+    var wishlistTotalCount = $('.wishlist-total-count');
 
     $(document).on("click", ".add-wishlist-btn", function (e) {
         e.preventDefault();
 
         var id = $(this).attr("data-id");
+        
+        hiddenWishlistCount = hiddenWishlistCount + 1;
+        wishlistTotalCount.html(hiddenWishlistCount);
 
         fetch('https://localhost:44363/product/AddToWishlist/' + id)
             .then(response => response.text())
-        var nese = $('.ferid').val();
-        console.log(nese);
-        //var hiddenWishlistCount = $('.hidden-wishlist-count').attr("data-id");
-        //var wishlistTotalCount = $('.wishlist-total-count');
-        //wishlistTotalCount.html(hiddenWishlistCount);
         
     });
+
 
     ///////////////////////////////////////////////////////////////
 
@@ -267,6 +267,8 @@ $(document).ready(function () {
         e.preventDefault();
 
         var id = $(this).attr("data-id");
+        hiddenWishlistCount = hiddenWishlistCount - 1;
+        wishlistTotalCount.html(hiddenWishlistCount);
 
         fetch('https://localhost:44363/product/deletewishlistitem/' + id)
             .then(response => response.text())
@@ -323,5 +325,5 @@ $(document).ready(function () {
             }
         })
     })
-
+   
 })

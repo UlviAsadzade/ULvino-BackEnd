@@ -437,6 +437,7 @@ namespace Ulvino.Controllers
 
         public IActionResult AddToWishlist(int id)
         {
+            
             Product product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
 
             WishlistItemViewModel wishlistItem = null;

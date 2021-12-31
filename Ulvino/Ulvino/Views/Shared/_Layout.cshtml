@@ -41,7 +41,7 @@
                             <a asp-controller="wishlist" asp-action="index">
                                 <i class="far fa-heart"></i>
                                 <span class="icon-count wishlist-total-count">@wishlistItems.Count()</span>
-
+                                <input class="hidden-wishlist-count" hidden value="@wishlistItems.Count()">
                             </a>
                         </li>
                         <li class="account-box-main ">
@@ -85,7 +85,6 @@
                             <a asp-controller="cart" asp-action="index">
                                 <i class="fas fa-shopping-cart"></i>
                                 <span class="icon-count basket-total-count">@basketItems.Count()</span>
-
                             </a>
                         </li>
                         <li class="cart-box show-basket-box ">
@@ -146,11 +145,19 @@
                     </div>
                     <div class="col-2">
                         <h3>MY ACCOUNT</h3>
-                        <a href="" class="footer-item">Order Tracking</a>
-                        <a href="./cart.html" class="footer-item">Cart</a>
-                        <a href="./checkout.html" class="footer-item">Checkout</a>
-                        <a href="./wishlist.html" class="footer-item">Wishlist</a>
-                        <a href="./account.html" class="footer-item">My Account</a>
+                        <a asp-controller="cart" asp-action="index" class="footer-item">Cart</a>
+                        <a asp-controller="order" asp-action="checkout" class="footer-item">Checkout</a>
+                        <a asp-controller="wishlist" asp-action="index" class="footer-item">Wishlist</a>
+                        @if (member != null)
+                        {
+                            <a asp-controller="account" asp-action="profile" class="footer-item"><span>My Account</span></a>
+                        }
+                        else
+                        {
+                            <a data-bs-toggle="modal" data-bs-target="#loginModal" class="show-login-modal footer-item">
+                                <span>Login</span>
+                            </a>
+                        }
                     </div>
                     <div class="col-3 footer-right">
                         <h3>NEWSLETTER</h3>

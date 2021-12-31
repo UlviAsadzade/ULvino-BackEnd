@@ -11,5 +11,6 @@ namespace Ulvino.ViewModels
         public double Price { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }
+
     }
 }

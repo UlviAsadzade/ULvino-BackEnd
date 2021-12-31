@@ -1,17 +1,35 @@
-$(function() {
+$(function () {
+
+    var saturdayOrders = parseInt($('.saturdayOrders').val());
+    var saturdaySales = parseInt($('.saturdaySales').val());
+    var sundayOrders = parseInt($('.sundayOrders').val());
+    var sundaySales = parseInt($('.sundaySales').val());
+    var mondayOrders = parseInt($('.mondayOrders').val());
+    var mondaySales = parseInt($('.mondaySales').val());
+    var tuesdayOrders = parseInt($('.tuesdayOrders').val());
+    var tuesdaySales = parseInt($('.tuesdaySales').val());
+    var wednesdayOrders = parseInt($('.wednesdayOrders').val());
+    var wednesdaySales = parseInt($('.wednesdaySales').val());
+    var thursdayOrders = parseInt($('.thursdayOrders').val());
+    var thursdaySales = parseInt($('.thursdaySales').val());
+    var fridayOrders = parseInt($('.fridayOrders').val());
+    var fridaySales = parseInt($('.fridaySales').val());
+
+
     var a = {
-            labels: ["Sunday", "Munday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        labels: ["Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" ],
             datasets: [{
-                label: "Data 1",
+                label: "Orders",
                 borderColor: 'rgba(52,152,219,1)',
                 backgroundColor: 'rgba(52,152,219,1)',
                 pointBackgroundColor: 'rgba(52,152,219,1)',
-                data: [29, 48, 40, 19, 78, 31, 85]
+                data: [saturdayOrders, sundayOrders, mondayOrders, tuesdayOrders, wednesdayOrders, thursdayOrders, fridayOrders]
+
             },{
-                label: "Data 2",
-                backgroundColor: "#DADDE0",
-                borderColor: "#DADDE0",
-                data: [45, 80, 58, 74, 54, 59, 40]
+                label: "Sales",
+                backgroundColor: "#a34253",
+                borderColor: "#a34253",
+                data: [saturdaySales, sundaySales,mondaySales, tuesdaySales, wednesdaySales, thursdaySales, fridaySales]
             }]
         },
         t = {
@@ -88,11 +106,15 @@ $(function() {
     ]
   });
 
+    var redWines = parseInt( $('.redWines').val());
+    var whiteWines = parseInt($('.whiteWines').val());
+    var roseWines = parseInt($('.roseWines').val());
+    
   
   var doughnutData = {
-      labels: ["Desktop","Tablet","Mobile" ],
+      labels: ["Red Wines","White Wines","Rose Wines" ],
       datasets: [{
-          data: [47,30,23],
+          data: [redWines, whiteWines, roseWines],
           backgroundColor: ["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]
       }]
   } ;
@@ -106,7 +128,7 @@ $(function() {
   };
 
 
-  var ctx4 = document.getElementById("doughnut_chart").getContext("2d");
+  var ctx4 = document.getElementById("doughnut_chart");
   new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
 
 

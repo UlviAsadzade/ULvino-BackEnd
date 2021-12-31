@@ -21,7 +21,6 @@
     <div class="container">
         <div class="row wishlist-page-box" >
             <div class="container">
-                <input class="hidden-wishlist-count" hidden value="@Model.Count()">
 
                 @foreach (var item in Model)
                 {
@@ -46,7 +45,7 @@
                             <a href="" class="button add-basket-btn " data-id="@item.ProductId">Add to Cart</a>
                         </div>
                         <div class="col-1">
-                            <a href="" class="remove-product-icon delete-wishlist-item" data-id="@item.ProductId"  data-target="@item.ProductId">
+                            <a href="" class="remove-product-icon delete-wishlist-item" data-id="@item.ProductId" data-target="@item.ProductId">
                                 <i class="far fa-trash-alt"></i>
                             </a>
                         </div>
@@ -61,7 +60,7 @@
 
                 <div class="wishlist-empty-box">
                     <h2>Your Wishlist is Empty</h2>
-                    <a  asp-controller="product" asp-action="index" class="button ">Go Shop</a>
+                    <a asp-controller="product" asp-action="index" class="button ">Go Shop</a>
                 </div>
 
 
