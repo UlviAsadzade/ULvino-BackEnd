@@ -27,7 +27,8 @@ namespace Ulvino.Areas.Manage.Controllers
         {
             DashboardViewModel dashboardVM = new DashboardViewModel
             {
-                Orders = _context.Orders.Where(x=>x.Status == OrderStatus.Accepted).Include(x => x.OrderItems).ToList(),
+                AcceptedOrders = _context.Orders.Where(x=>x.Status == OrderStatus.Accepted).Include(x => x.OrderItems).ToList(),
+                PendingOrders = _context.Orders.Where(x=>x.Status == OrderStatus.Pending).Include(x => x.OrderItems).ToList(),
                 Users = _context.AppUsers.Where(x => x.IsAdmin == false).ToList(),
                 LatestOrders = _context.Orders.OrderByDescending(x => x.CreatedAt).Take(5).ToList(),
                 RedWines = _context.Products.Where(x => x.Type.Name == "Red").Count(),

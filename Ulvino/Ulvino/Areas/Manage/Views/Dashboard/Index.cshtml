@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     double totalIncome = 0;
-    foreach (var item in Model.Orders)
+    foreach (var item in Model.AcceptedOrders)
     {
         totalIncome += (item.OrderItems.Sum(x => x.SalePrice * x.Count) - item.OrderItems.Sum(x => x.CostPrice * x.Count));
     }
@@ -32,7 +32,7 @@
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-success color-white widget-stat">
                 <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">@Model.Orders.Count()</h2>
+                    <h2 class="m-b-5 font-strong">@Model.AcceptedOrders.Count()</h2>
                     <div class="m-b-5">ALL ORDERS</div><i class="ti-shopping-cart widget-stat-icon"></i>
                 </div>
             </div>
@@ -40,7 +40,7 @@
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-info color-white widget-stat">
                 <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">@Model.Orders.Where(x => x.Status == OrderStatus.Pending).Count()</h2>
+                    <h2 class="m-b-5 font-strong">@Model.PendingOrders.Count()</h2>
                     <div class="m-b-5">PENDING ORDERS</div><i class="ti-time widget-stat-icon"></i>
                 </div>
             </div>

@@ -151,7 +151,7 @@ namespace Ulvino.Controllers
             }
 
 
-            AppUser member = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginVM.UserName && !x.IsAdmin);
+            AppUser member = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginVM.UserName);
 
             if (member == null)
             {
@@ -169,6 +169,16 @@ namespace Ulvino.Controllers
                 return RedirectToAction("index", "home");
 
             }
+
+            AppUser admin = null;
+
+            admin = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginVM.UserName && x.IsAdmin);
+
+            if (admin != null)
+            {
+                return RedirectToAction("index", "dashboard", new {area="manage" });
+            }
+           
 
             TempData["Login"] = true;
 

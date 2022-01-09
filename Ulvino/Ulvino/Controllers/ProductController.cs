@@ -32,7 +32,10 @@ namespace Ulvino.Controllers
                                    int? oldYearsId = null, int? middleYearsId = null, int? newYearsId = null,
                                    int? regionId = null, int? typeId = null, int? variatyId = null, string search = null)
         {
-
+            if (page <= 0)
+            {
+                page = 1;
+            }
 
             ViewBag.Wishlists = null;
 
@@ -69,13 +72,12 @@ namespace Ulvino.Controllers
 
             ViewBag.Wishlists = items;
 
-
-            var query = _context.Products.AsQueryable();
-
             ViewBag.CurrentRegionId = regionId;
             ViewBag.CurrentTypeId = typeId;
             ViewBag.CurrentVariatyId = variatyId;
             ViewBag.CurrentSearch = search;
+
+            var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search))
                 query = query.Where(x => x.Name.Contains(search));

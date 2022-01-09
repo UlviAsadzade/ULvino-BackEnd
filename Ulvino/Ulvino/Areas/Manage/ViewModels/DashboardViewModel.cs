@@ -8,7 +8,8 @@ namespace Ulvino.Areas.Manage.ViewModels
 {
     public class DashboardViewModel
     {
-        public List<Order> Orders { get; set; }
+        public List<Order> AcceptedOrders { get; set; }
+        public List<Order> PendingOrders { get; set; }
         public List<Order> LatestOrders { get; set; }
         public List<AppUser> Users { get; set; }
         public double RedWines { get; set; }
