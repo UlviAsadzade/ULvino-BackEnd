@@ -1,1 +1,1 @@
-You can visit the site from this link  http://ulviasadzade-001-site1.ctempurl.com/
+You can visit the site from this link http://ulvi93-001-site1.etempurl.com/
